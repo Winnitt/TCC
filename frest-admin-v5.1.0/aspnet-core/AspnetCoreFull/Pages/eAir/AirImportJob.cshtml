@@ -1,0 +1,2891 @@
+@page
+@model AspnetCoreFull.Pages.eAir.AirImportJobModel
+@{
+    ViewData["Title"] = "Air Import  Job";
+}
+
+<h4 class="fw-bold py-3 mb-4">
+  <span class="text-muted fw-light">eAir /</span> @ViewData["Title"]
+</h4>
+
+<!-- Main Accordion Container -->
+<div class="accordion" id="airJobAccordion">
+
+  <!-- ACCORDION PANEL 1: MAWB -->
+  <div class="accordion-item active">
+     <h2 class="accordion-header" id="headingMawb">
+      @* CHANGE 1: Added the "collapsed" class to the button *@
+      <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseMawb" aria-expanded="false" aria-controls="collapseMawb">
+        <i class="bx bxs-file-blank me-2"></i>
+        MAWB Details
+      </button>
+    </h2>
+
+    <div id="collapseMawb" class="accordion-collapse collapse" aria-labelledby="headingMawb" data-bs-parent="#airJobAccordion">
+      <div class="accordion-body">
+        <!-- MAWB Sub-Tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item"><button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#mawb-info" aria-controls="mawb-info" aria-selected="true">MAWB</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#mawb-party" aria-controls="mawb-party" aria-selected="false">Party</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#mawb-others" aria-controls="mawb-others" aria-selected="false">Others</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#mawb-charge" aria-controls="mawb-charge" aria-selected="false">MAWB Charge</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#mawb-connection" aria-controls="mawb-connection" aria-selected="false">Connection</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#mawb-dimension" aria-controls="mawb-dimension" aria-selected="false">Dimension</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#mawb-edi" aria-controls="mawb-edi" aria-selected="false">EDI</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#mawb-note" aria-controls="mawb-note" aria-selected="false">Note</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#mawb-event" aria-controls="mawb-event" aria-selected="false">Event/Reference</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#mawb-links" aria-controls="mawb-links" aria-selected="false">Links</button></li>
+
+
+        </ul>
+        <div class="tab-content">
+          <!-- MAWB Info Pane -->
+          <div class="tab-pane fade show active p-3" id="mawb-info" role="tabpanel">
+             <div class="row">
+              <div class="col-md-7">
+                <div class="row">
+                  <div class="col-md-6 mb-3"><label class="form-label">Job <span class="text-danger">*</span></label><input type="text" class="form-control" /></div>
+                  <div class="col-md-6 mb-3"><label class="form-label">MAWB</label><input type="text" class="form-control" /></div>
+                </div>
+                <div class="mb-3"><label class="form-label">Agent</label><input type="text" class="form-control" /></div>
+                <div class="mb-3"><label class="form-label">Address</label><textarea class="form-control" rows="2"></textarea></div>
+                <div class="row">
+                  <div class="col-md-3 mb-3"><label class="form-label">Pieces <span class="text-danger">*</span></label><input type="number" class="form-control" /></div>
+                  <div class="col-md-3 mb-3"><label class="form-label">Weight <span class="text-danger">*</span></label><input type="number" class="form-control" /></div>
+                  <div class="col-md-3 mb-3"><label class="form-label">Volume</label><input type="number" class="form-control" /></div>
+                  <div class="col-md-3 mb-3"><label class="form-label">Chargeable Wt. <span class="text-danger">*</span></label><input type="number" class="form-control" /></div>
+                </div>
+                <div class="mb-3"><label class="form-label">Note</label><textarea class="form-control" id="mawb-note-main" rows="3"></textarea></div>
+              </div>
+              <div class="col-md-5">
+                <div class="row">
+                  <div class="col-md-4 mb-3"><label class="form-label">Freight <span class="text-danger">*</span></label><select class="form-select"><option>Select...</option></select></div>
+                  <div class="col-md-4 mb-3"><label class="form-label">Job Completed</label><select class="form-select"><option>No</option></select></div>
+                  <div class="col-md-4 mb-3"><label class="form-label">Status <span class="text-danger">*</span></label><select class="form-select"><option>Select...</option></select></div>
+                </div>
+                <div class="card p-3 bg-light">
+                  <div class="mb-3"><label class="form-label">Carrier <span class="text-danger">*</span></label><input type="text" class="form-control" /></div>
+                  <div class="mb-3"><label class="form-label">Flight No <span class="text-danger">*</span></label><input type="text" class="form-control" /></div>
+                  <div class="row">
+                    <div class="col-md-6 mb-3"><label class="form-label">POR</label><input type="text" class="form-control" /></div>
+                    <div class="col-md-6 mb-3"><label class="form-label">POL <span class="text-danger">*</span></label><input type="text" class="form-control" /></div>
+                    <div class="col-md-6 mb-3"><label class="form-label">POD <span class="text-danger">*</span></label><input type="text" class="form-control" /></div>
+                    <div class="col-md-6 mb-3"><label class="form-label">FDC</label><input type="text" class="form-control" /></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 mb-3"><label class="form-label">ETD</label><input type="date" class="form-control" /></div>
+                    <div class="col-md-6 mb-3"><label class="form-label">ATD</label><input type="date" class="form-control" /></div>
+                    <div class="col-md-6 mb-3"><label class="form-label">ETA <span class="text-danger">*</span></label><input type="date" class="form-control" /></div>
+                    <div class="col-md-6 mb-3"><label class="form-label">ATA</label><input type="date" class="form-control" /></div>
+                  </div>
+                   <div class="mb-3"><label class="form-label">Clearance Location</label><input type="text" class="form-control" /></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ======================================= -->
+          <!-- PARTY TAB PANE                          -->
+        <!-- ======================================= -->
+<div class="tab-pane fade p-3" id="mawb-party" role="tabpanel">
+    <div class="card">
+        <div class="card-body">
+
+            <!-- Top Row: Job Reference and Global ID -->
+            <div class="row align-items-center mb-4">
+                <div class="col-md-6">
+                    <fieldset class="border p-2">
+                        <legend class="float-none w-auto px-2 fs-6">Job Reference</legend>
+                        <div class="row align-items-center">
+                            <label for="party-segment" class="col-auto col-form-label">Segment</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="party-segment">
+                            </div>
+                            <label for="party-job" class="col-auto col-form-label">Job</label>
+                            <div class="col-sm">
+                                <input type="text" class="form-control" id="party-job">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-6">
+                    <div class="row align-items-center">
+                        <label for="global-id" class="col-md-3 col-form-label text-md-end">Global ID</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="global-id">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Handling Agent -->
+<div class="row mb-3 align-items-center">
+    <label for="handling-agent" class="col-md-2 col-form-label">Handling Agent</label>
+    <div class="col-md-10">
+        <div class="input-group">
+            <select class="form-select" id="handling-agent">
+                <option selected value="">Select or type to search...</option>
+                <option value="HANGZHOU JOY SHINE IMP.EXP.CO.,LTD">HANGZHOU JOY SHINE IMP.EXP.CO.,LTD</option>
+                <option value="1 ZHEJIANG NEW AIR ART CO LTD">1 ZHEJIANG NEW AIR ART CO LTD</option>
+                <option value="1ST GENETECH HANGZHOU CO LIMITED">1ST GENETECH HANGZHOU CO LIMITED</option>
+                <option value="1UP CARGO">1UP CARGO</option>
+                <option value="2 REX SEALING AND PACKING INDUSTRIES PVT LTD">2 REX SEALING AND PACKING INDUSTRIES PVT LTD</option>
+            </select>
+            <div class="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" title="Option 1">
+            </div>
+            <div class="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" title="Option 2">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Handling Agent Address -->
+<div class="row mb-4">
+    <label for="handling-agent-address" class="col-md-2 col-form-label">Address</label>
+    <div class="col-md-10">
+        <textarea class="form-control" id="handling-agent-address" rows="4"></textarea>
+    </div>
+</div>
+
+<!-- Carrier Agent (and its address) -->
+<div class="row mb-3 align-items-center">
+    <label for="carrier-agent" class="col-md-2 col-form-label">Carrier Agent</label>
+    <div class="col-md-10">
+        <div class="input-group">
+            <select class="form-select" id="carrier-agent">
+                <option selected>Select or type to search...</option>
+            </select>
+            <div class="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" title="Option 1">
+            </div>
+            <div class="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" title="Option 2">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mb-3">
+    <label for="carrier-agent-address" class="col-md-2 col-form-label">Address</label>
+    <div class="col-md-10">
+        <textarea class="form-control" id="carrier-agent-address" rows="4"></textarea>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+
+    const agentAddresses = {
+        "HANGZHOU JOY SHINE IMP.EXP.CO.,LTD": "ROOM NO.808,8F ZHONGMIN BUILDING,\n8 GUODONGYUAN ROAD,HANGZHOU,CHINA",
+        "1 ZHEJIANG NEW AIR ART CO LTD": "NO 27 LONGTAN ROAD NIANSANLI TOWN YIWU CITY\n2 ZHEJIANG DAIVIS INDUSTRIAL CO LTD QINKOU INDUSTRY",
+        "1ST GENETECH HANGZHOU CO LIMITED": "NO.768 JIANGHONG ROAD BINJIANG HI-TECH INDUSTRY DEVELOPMENT ZONE\nHANGZHOU CHINA",
+        "1UP CARGO": "39 BISHOP DUNN PLACE\nBOTANY 2013\nAUCKLAND, NEW ZEALAND\nPH:64 9 884 3321",
+        "2 REX SEALING AND PACKING INDUSTRIES PVT LTD": "PLOT NO M 44 MIDC TALOJA TAL PANVEL DIST\nRAIGAD 410 208\nMAHARASHTRA INDIA"
+    };
+
+    const handlingAgentSelect = document.getElementById('handling-agent');
+    const handlingAgentAddressTextarea = document.getElementById('handling-agent-address');
+
+
+    handlingAgentSelect.addEventListener('change', function () {
+        const selectedAgentName = this.value;
+        const newAddress = agentAddresses[selectedAgentName];
+
+
+        if (newAddress) {
+
+            const userConfirmation = confirm(`Do you want to change the address for "${selectedAgentName}"?`);
+
+            if (userConfirmation) {
+
+                handlingAgentAddressTextarea.value = newAddress;
+            }
+            // If the user clicks "Cancel", nothing happens.
+
+        } else {
+            // If the user selects the default "Select..." option, clear the address without asking
+            handlingAgentAddressTextarea.value = '';
+        }
+    });
+});
+</script>
+
+        </div>
+    </div>
+</div>
+
+<!-- ======================================= -->
+<!-- OTHERS TAB PANE     -->
+<!-- ======================================= -->
+<div class="tab-pane fade p-3" id="mawb-others" role="tabpanel">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+
+                <!-- Left Column -->
+                <div class="col-lg-3">
+                    <fieldset class="border p-3 mb-4">
+                        <legend class="float-none w-auto px-2 fs-6">Job Reference</legend>
+                        <!-- Proper Spacing using Bootstrap Gutters -->
+<div class="row g-2 align-items-center">
+    <div class="col-auto">
+        <label for="others-segment" class="col-form-label">Segment</label>
+    </div>
+    <div class="col-3">
+        <input type="text" class="form-control" id="others-segment">
+    </div>
+    <div class="col-auto">
+        <label for="others-job" class="col-form-label">Job</label>
+    </div>
+    <div class="col">
+        <input type="text" class="form-control" id="others-job">
+    </div>
+</div>
+                    </fieldset>
+
+                    <fieldset class="border p-3 mb-4">
+                        <legend class="float-none w-auto px-2 fs-6">Agent Transport Authority</legend>
+                        <div class="mb-3">
+                            <label for="ata-no" class="form-label visually-hidden">No</label>
+                            <input type="text" class="form-control" id="ata-no" placeholder="No">
+                        </div>
+                        <div>
+                            <label for="ata-date" class="form-label visually-hidden">Date</label>
+                            <input type="date" class="form-control" id="ata-date" placeholder="Date">
+                        </div>
+                    </fieldset>
+
+                    <div class="mb-3">
+                         <label for="bill-of-entry" class="form-label visually-hidden">Bill of Entry</label>
+                         <input type="text" class="form-control" id="bill-of-entry" placeholder="Bill of Entry">
+                    </div>
+                    <div>
+                         <label for="boe-date" class="form-label visually-hidden">BOE Date</label>
+                         <input type="date" class="form-control" id="boe-date" placeholder="BOE Date">
+                    </div>
+                </div>
+
+                <!-- Center Column -->
+                <div class="col-lg-5">
+                    <fieldset class="border p-3 mb-4">
+                        <legend class="float-none w-auto px-2 fs-6">MIS Job Close Details</legend>
+                        <div class="row g-3 align-items-center mb-3">
+                            <div class="col-3"><label for="mis-status" class="col-form-label">Status</label></div>
+                            <div class="col-9">
+                                <select class="form-select" id="mis-status">
+                                    <option>Active</option>
+                                    <option>Closed</option>
+                                    <option>Pending</option>
+                                </select>
+                            </div>
+                        </div>
+                         <div class="row g-3 align-items-center mb-3">
+                            <div class="col-3"><label for="mis-date" class="col-form-label">Date</label></div>
+                            <div class="col-9"><input type="date" class="form-control" id="mis-date"></div>
+                        </div>
+                         <div class="row g-3 align-items-center">
+                            <div class="col-3"><label for="mis-user" class="col-form-label">User</label></div>
+                            <div class="col-9"><input type="text" class="form-control" id="mis-user"></div>
+                        </div>
+                    </fieldset>
+
+                    <div class="row g-3 align-items-center mb-3">
+                        <div class="col-3"><label for="igm-no" class="col-form-label">IGM No</label></div>
+                        <div class="col-9">
+                             <div class="input-group">
+                                <input type="text" class="form-control" id="igm-no">
+                                <input type="text" class="form-control">
+                             </div>
+                        </div>
+                    </div>
+                     <div class="row g-3 align-items-center mb-3">
+                        <div class="col-3"><label for="mft-from" class="col-form-label">MFT From</label></div>
+                        <div class="col-9"><input type="text" class="form-control" id="mft-from"></div>
+                    </div>
+                     <div class="row g-3 align-items-center mb-3">
+                        <div class="col-3"><label for="unstuff-place" class="col-form-label">Unstuff Place</label></div>
+                        <div class="col-9"><input type="text" class="form-control" id="unstuff-place"></div>
+                    </div>
+                     <div class="row g-3 align-items-center">
+                        <div class="col-3"><label for="carrier-do-no" class="col-form-label">Carrier DO No</label></div>
+                        <div class="col-9">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="carrier-do-no">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="col-lg-4">
+                     <div class="row mb-3">
+                        <label for="mail-note-type" class="col-lg-4 col-form-label">Mail Note Type</label>
+                        <div class="col-lg-8">
+                            <select class="form-select" id="mail-note-type">
+                                <option>Select...</option>
+                            </select>
+                        </div>
+                    </div>
+                     <div class="row mb-3">
+                        <label for="mail-note" class="col-lg-4 col-form-label">Mail Note</label>
+                        <div class="col-lg-8">
+                             <div class="input-group">
+                                <textarea class="form-control" id="mail-note" rows="1"></textarea>
+                                <button class="btn btn-outline-secondary" type="button">Send Mail</button>
+                             </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="row mb-3">
+                        <label for="create-user" class="col-lg-4 col-form-label">Create User</label>
+                        <div class="col-lg-8">
+                             <div class="input-group">
+                                <input type="text" class="form-control" id="create-user">
+                                <input type="text" class="form-control">
+                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="run-user" class="col-lg-4 col-form-label">Run User</label>
+                        <div class="col-lg-8">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="run-user">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ======================================= -->
+<!-- MAWB CHARGE TAB PANE                    -->
+<!-- ======================================= -->
+<div class="tab-pane fade p-3" id="mawb-charge" role="tabpanel">
+    <div class="card">
+        <div class="card-body">
+            <!-- Job Reference Section -->
+            <fieldset class="border p-3 mb-4 d-inline-block">
+                <legend class="float-none w-auto px-2 fs-6">Job Reference</legend>
+                <div class="row g-2 align-items-center">
+                    <div class="col-auto">
+                        <label for="mc-segment" class="col-form-label">Segment</label>
+                    </div>
+                    <div class="col-3" style="min-width: 80px;">
+                        <input type="text" class="form-control" id="mc-segment">
+                    </div>
+                    <div class="col-auto">
+                        <label for="mc-job" class="col-form-label">Job</label>
+                    </div>
+                    <div class="col" style="min-width: 200px;">
+                        <input type="text" class="form-control" id="mc-job">
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Charges Table -->
+            <div class="table-responsive">
+                <table class="table table-bordered" style="min-width: 1400px;">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="align-middle">SNo</th>
+                            <th class="align-middle">Charge <span class="text-danger">*</span></th>
+                            <th class="align-middle">Name <span class="text-danger">*</span></th>
+                            <th class="align-middle">C/R/N <span class="text-danger">*</span></th>
+                            <th class="align-middle">PP/CC <span class="text-danger">*</span></th>
+                            <th class="align-middle">Curr. <span class="text-danger">*</span></th>
+                            <th class="align-middle">ROE <span class="text-danger">*</span></th>
+                            <th class="align-middle">Unit</th>
+                            <th class="align-middle">Per Unit</th>
+                            <th class="align-middle">Amount <span class="text-danger">*</span></th>
+                            <th class="align-middle">Local Amount</th>
+                            <th class="align-middle">Due</th>
+                            <th class="align-middle">Note</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mawbChargesTableBody">
+                        <!-- 5 Showcase Rows -->
+                        <tr>
+                            <td class="p-2"><input type="text" class="form-control" value="1" readonly></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td class="p-2"><input type="text" class="form-control" value="2" readonly></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td class="p-2"><input type="text" class="form-control" value="3" readonly></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td class="p-2"><input type="text" class="form-control" value="4" readonly></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td class="p-2"><input type="text" class="form-control" value="5" readonly></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bottom Controls -->
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <button type="button" class="btn btn-sm btn-outline-primary" id="addMawbChargeRowBtn">
+                    <i class="bx bx-plus me-1"></i>Add Row
+                </button>
+                <div class="row g-2 align-items-center">
+                    <div class="col-auto">
+                        <label for="mc-total-amount" class="col-form-label">Total Amount</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" id="mc-total-amount" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+
+    const addMawbChargeBtn = document.getElementById('addMawbChargeRowBtn');
+    const mawbChargeTableBody = document.getElementById('mawbChargesTableBody');
+
+    addMawbChargeBtn.addEventListener('click', function () {
+        const rowCount = mawbChargeTableBody.rows.length;
+        const newRow = mawbChargeTableBody.insertRow(rowCount);
+
+        newRow.innerHTML = `
+            <td class="p-2"><input type="text" class="form-control" value="${rowCount + 1}" readonly></td>
+            <td class="p-2"><input type="text" class="form-control"></td>
+            <td class="p-2"><input type="text" class="form-control"></td>
+            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+            <td class="p-2"><input type="text" class="form-control"></td>
+            <td class="p-2"><input type="text" class="form-control"></td>
+            <td class="p-2"><input type="text" class="form-control"></td>
+            <td class="p-2"><input type="text" class="form-control"></td>
+            <td class="p-2"><input type="text" class="form-control"></td>
+            <td class="p-2"><input type="text" class="form-control"></td>
+            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+            <td class="p-2"><input type="text" class="form-control"></td>
+        `;
+    });
+
+});
+</script>
+<!-- ======================================= -->
+<!-- CONNECTION TAB PANE                     -->
+<!-- ======================================= -->
+<div class="tab-pane fade p-3" id="mawb-connection" role="tabpanel">
+    <div class="card">
+        <div class="card-body">
+            <!-- Job Reference Section -->
+            <fieldset class="border p-3 mb-4 d-inline-block">
+                <legend class="float-none w-auto px-2 fs-6">Job Reference</legend>
+                <div class="row g-2 align-items-center">
+                    <div class="col-auto">
+                        <label for="conn-segment" class="col-form-label">Segment</label>
+                    </div>
+                    <div class="col-3" style="min-width: 80px;">
+                        <input type="text" class="form-control" id="conn-segment">
+                    </div>
+                    <div class="col-auto">
+                        <label for="conn-job" class="col-form-label">Job</label>
+                    </div>
+                    <div class="col" style="min-width: 200px;">
+                        <input type="text" class="form-control" id="conn-job">
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Connection Table -->
+            <div class="table-responsive">
+                <table class="table table-bordered" style="min-width: 1200px;">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="align-middle">SNo</th>
+                            <th class="align-middle">Move <span class="text-danger">*</span></th>
+                            <th class="align-middle">POL <span class="text-danger">*</span></th>
+                            <th class="align-middle">POD <span class="text-danger">*</span></th>
+                            <th class="align-middle">ETD <span class="text-danger">*</span></th>
+                            <th class="align-middle">ETA <span class="text-danger">*</span></th>
+                            <th class="align-middle">Carrier / Vessel <span class="text-danger">*</span></th>
+                            <th class="align-middle">No. <span class="text-danger">*</span></th>
+                            <th class="align-middle">Status <span class="text-danger">*</span></th>
+                            <th class="align-middle">Note</th>
+                        </tr>
+                    </thead>
+                    <tbody id="connectionTableBody">
+                        <!-- 5 Showcase Rows -->
+                        <tr>
+                            <td class="p-2"><input type="text" class="form-control" value="1" readonly></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="date" class="form-control"></td>
+                            <td class="p-2"><input type="date" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td class="p-2"><input type="text" class="form-control" value="2" readonly></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="date" class="form-control"></td>
+                            <td class="p-2"><input type="date" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td class="p-2"><input type="text" class="form-control" value="3" readonly></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="date" class="form-control"></td>
+                            <td class="p-2"><input type="date" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td class="p-2"><input type="text" class="form-control" value="4" readonly></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="date" class="form-control"></td>
+                            <td class="p-2"><input type="date" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td class="p-2"><input type="text" class="form-control" value="5" readonly></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="date" class="form-control"></td>
+                            <td class="p-2"><input type="date" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                            <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2"><input type="text" class="form-control"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-end mt-3">
+                <button type="button" class="btn btn-sm btn-outline-primary" id="addConnectionRowBtn">
+                    <i class="bx bx-plus me-1"></i>Add Row
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    // --- Other scripts can go here ---
+
+    // --- Logic for Connection Table ---
+    const addConnectionBtn = document.getElementById('addConnectionRowBtn');
+    if (addConnectionBtn) {
+        const connectionTableBody = document.getElementById('connectionTableBody');
+
+        addConnectionBtn.addEventListener('click', function () {
+            const rowCount = connectionTableBody.rows.length;
+            const newRow = connectionTableBody.insertRow(rowCount);
+
+            newRow.innerHTML = `
+                <td class="p-2"><input type="text" class="form-control" value="${rowCount + 1}" readonly></td>
+                <td class="p-2"><input type="text" class="form-control"></td>
+                <td class="p-2"><input type="text" class="form-control"></td>
+                <td class="p-2"><input type="text" class="form-control"></td>
+                <td class="p-2"><input type="date" class="form-control"></td>
+                <td class="p-2"><input type="date" class="form-control"></td>
+                <td class="p-2"><input type="text" class="form-control"></td>
+                <td class="p-2"><input type="text" class="form-control"></td>
+                <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                <td class="p-2"><input type="text" class="form-control"></td>
+            `;
+        });
+    }
+
+});
+</script>
+<!-- ======================================= -->
+<!-- DIMENSION TAB PANE                      -->
+<!-- ======================================= -->
+<div class="tab-pane fade p-3" id="mawb-dimension" role="tabpanel">
+    <div class="card">
+        <div class="card-body">
+            <!-- Top Controls Row -->
+            <div class="row align-items-center mb-4">
+                <div class="col-md-4">
+                    <fieldset class="border p-3 h-100">
+                        <legend class="float-none w-auto px-2 fs-6">Job Reference</legend>
+                        <div class="row g-2 align-items-center">
+                            <div class="col-auto"><label for="dim-segment" class="col-form-label">Segment</label></div>
+                            <div class="col-3"><input type="text" class="form-control" id="dim-segment"></div>
+                            <div class="col-auto"><label for="dim-job" class="col-form-label">Job</label></div>
+                            <div class="col"><input type="text" class="form-control" id="dim-job"></div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-4 text-center">
+                    <button type="button" class="btn btn-secondary">Get House Dimension</button>
+                </div>
+                <div class="col-md-4">
+                    <label for="dimension-unit" class="form-label">Dimension Unit</label>
+                    <select class="form-select" id="dimension-unit">
+                        <option selected>Select...</option>
+                        <option>CM</option>
+                        <option>INCH</option>
+                        <option>KILO/INCH</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Dimension Table Header -->
+            <div class="row g-2 text-center mb-1 small">
+                <div class="col-1">SNo</div>
+                <div class="col">Pieces <span class="text-danger">*</span></div>
+                <div class="col-auto px-1"></div>
+                <div class="col">Length <span class="text-danger">*</span></div>
+                <div class="col-auto px-1"></div>
+                <div class="col">Width <span class="text-danger">*</span></div>
+                <div class="col-auto px-1"></div>
+                <div class="col">Height <span class="text-danger">*</span></div>
+                <div class="col-auto px-1"></div>
+                <div class="col">Value</div>
+                <div class="col-auto px-1"></div>
+                <div class="col">Volume</div>
+                <div class="col-2">Note</div>
+            </div>
+
+            <!-- Dimension Table Body -->
+            <div id="dimensionTableBody">
+                <!-- 5 Showcase Rows -->
+                <div class="row g-2 align-items-center mb-2">
+                    <div class="col-1"><input type="text" class="form-control" value="1" readonly></div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">X</div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">X</div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">X</div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">/</div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">=</div>
+                    <div class="col"><input type="text" class="form-control" readonly></div>
+                    <div class="col-2"><input type="text" class="form-control"></div>
+                </div>
+                <div class="row g-2 align-items-center mb-2">
+                    <div class="col-1"><input type="text" class="form-control" value="2" readonly></div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">X</div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">X</div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">X</div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">/</div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">=</div>
+                    <div class="col"><input type="text" class="form-control" readonly></div>
+                    <div class="col-2"><input type="text" class="form-control"></div>
+                </div>
+                <div class="row g-2 align-items-center mb-2">
+                    <div class="col-1"><input type="text" class="form-control" value="3" readonly></div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">X</div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">X</div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">X</div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">/</div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">=</div>
+                    <div class="col"><input type="text" class="form-control" readonly></div>
+                    <div class="col-2"><input type="text" class="form-control"></div>
+                </div>
+                 <div class="row g-2 align-items-center mb-2">
+                    <div class="col-1"><input type="text" class="form-control" value="4" readonly></div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">X</div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">X</div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">X</div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">/</div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">=</div>
+                    <div class="col"><input type="text" class="form-control" readonly></div>
+                    <div class="col-2"><input type="text" class="form-control"></div>
+                </div>
+                 <div class="row g-2 align-items-center mb-2">
+                    <div class="col-1"><input type="text" class="form-control" value="5" readonly></div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">X</div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">X</div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">X</div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">/</div>
+                    <div class="col"><input type="text" class="form-control"></div>
+                    <div class="col-auto fw-bold">=</div>
+                    <div class="col"><input type="text" class="form-control" readonly></div>
+                    <div class="col-2"><input type="text" class="form-control"></div>
+                </div>
+            </div>
+
+            <!-- Bottom Controls -->
+            <hr>
+            <div class="d-flex justify-content-between align-items-center">
+                <button type="button" class="btn btn-sm btn-outline-primary" id="addDimensionRowBtn">
+                    <i class="bx bx-plus me-1"></i>Add Row
+                </button>
+                <div class="row g-2 align-items-center">
+                    <div class="col-auto">
+                        <label for="dim-total-volume" class="col-form-label">Total Volume</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" id="dim-total-volume" class="form-control" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    // --- Other scripts can go here ---
+
+    // --- Logic for Dimension Table ---
+    const addDimensionBtn = document.getElementById('addDimensionRowBtn');
+    if (addDimensionBtn) {
+        const dimensionTableBody = document.getElementById('dimensionTableBody');
+
+        addDimensionBtn.addEventListener('click', function () {
+            // Get the current number of rows to determine the next SNo
+            const rowCount = dimensionTableBody.children.length;
+
+            // Create a new div element for the row
+            const newRow = document.createElement('div');
+            newRow.className = 'row g-2 align-items-center mb-2'; // Set the same classes as other rows
+
+            // Set the inner HTML of the new row
+            newRow.innerHTML = `
+                <div class="col-1"><input type="text" class="form-control" value="${rowCount + 1}" readonly></div>
+                <div class="col"><input type="text" class="form-control"></div>
+                <div class="col-auto fw-bold">X</div>
+                <div class="col"><input type="text" class="form-control"></div>
+                <div class="col-auto fw-bold">X</div>
+                <div class="col"><input type="text" class="form-control"></div>
+                <div class="col-auto fw-bold">X</div>
+                <div class="col"><input type="text" class="form-control"></div>
+                <div class="col-auto fw-bold">/</div>
+                <div class="col"><input type="text" class="form-control"></div>
+                <div class="col-auto fw-bold">=</div>
+                <div class="col"><input type="text" class="form-control" readonly></div>
+                <div class="col-2"><input type="text" class="form-control"></div>
+            `;
+
+            // Append the new row to the body
+            dimensionTableBody.appendChild(newRow);
+        });
+    }
+
+});
+</script>
+<!-- ======================================= -->
+<!-- EDI TAB PANE (with File Selection Logic) -->
+<!-- ======================================= -->
+<div class="tab-pane fade p-3" id="mawb-edi" role="tabpanel">
+    <div class="card">
+        <div class="card-body">
+            <!-- Job Reference Section -->
+            <fieldset class="border p-3 mb-4 d-inline-block">
+                <legend class="float-none w-auto px-2 fs-6">Job Reference</legend>
+                <div class="row g-2 align-items-center">
+                    <div class="col-auto">
+                        <label for="edi-segment" class="col-form-label">Segment</label>
+                    </div>
+                    <div class="col-3" style="min-width: 80px;">
+                        <input type="text" class="form-control" id="edi-segment">
+                    </div>
+                    <div class="col-auto">
+                        <label for="edi-job" class="col-form-label">Job</label>
+                    </div>
+                    <div class="col" style="min-width: 200px;">
+                        <input type="text" class="form-control" id="edi-job">
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Get Manifest Details Section -->
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-7 col-lg-5">
+                    <fieldset class="border p-4">
+                        <legend class="float-none w-auto px-2 fs-6 text-center">Get Manifest Details</legend>
+
+                        <div class="row align-items-center mb-3">
+                            <label for="file-format" class="col-sm-4 col-form-label">File Format</label>
+                            <div class="col-sm-8">
+                                <select class="form-select" id="file-format">
+                                    <option selected>Select...</option>
+                                    <option>Agent XML</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center mb-4">
+                            <label for="filename-display" class="col-sm-4 col-form-label">Filename</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <!-- This text input is just for display -->
+                                    <input type="text" class="form-control" id="filename-display" placeholder="Select a file..." readonly>
+                                    <!-- This button will trigger the file input -->
+                                    <button class="btn btn-outline-secondary" type="button" id="browseFileBtn" title="Browse for file">
+                                        <i class="bx bxs-folder-open"></i>
+                                    </button>
+                                    <!-- This is the ACTUAL file input, hidden from view -->
+                                    <input type="file" class="d-none" id="file-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="button" class="btn btn-secondary px-4">Get Details</button>
+                        </div>
+
+                    </fieldset>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+
+
+    // --- Logic for EDI File Input ---
+    const browseFileBtn = document.getElementById('browseFileBtn');
+    const actualFileInput = document.getElementById('file-input');
+    const filenameDisplay = document.getElementById('filename-display');
+
+    if (browseFileBtn) {
+
+        browseFileBtn.addEventListener('click', function() {
+
+            actualFileInput.click();
+        });
+
+
+        actualFileInput.addEventListener('change', function() {
+
+            if (this.files && this.files.length > 0) {
+
+                filenameDisplay.value = this.files[0].name;
+            }
+        });
+    }
+
+});
+</script>
+
+
+
+           <!-- Note Pane -->
+<div class="tab-pane fade p-3" id="mawb-note" role="tabpanel">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="table-light">
+                    <th style="width: 5%;">SNo <span class="text-danger">*</span></th>
+                    <th style="width: 10%;">Date <span class="text-danger">*</span></th>
+                    <th style="width: 10%;">Follow Up</th>
+                    <th style="width: 10%;">Type</th>
+                    <th style="width: 15%;">Assign To Name</th>
+                    <th style="width: 15%;">Email</th>
+                    <th>Note <span class="text-danger">*</span></th>
+                </tr>
+            </thead>
+
+            <tbody id="mawbNoteTableBody">
+                <tr>
+                    <td class="p-1"><input type="text" class="form-control form-control-sm" value="1" readonly /></td>
+                    <td class="p-1"><input type="date" class="form-control form-control-sm" /></td>
+                    <td class="p-1"><input type="date" class="form-control form-control-sm" /></td>
+                    <td class="p-1"><select class="form-select form-select-sm"><option selected>Agent</option><option>Employee</option></select></td>
+                    <td class="p-1"><input type="text" class="form-control form-control-sm" /></td>
+                    <td class="p-1"><input type="email" class="form-control form-control-sm" /></td>
+                    <td class="p-1"><input type="text" class="form-control form-control-sm" /></td>
+                </tr>
+                <tr>
+                    <td class="p-1"><input type="text" class="form-control form-control-sm" value="2" readonly /></td>
+                    <td class="p-1"><input type="date" class="form-control form-control-sm" /></td>
+                    <td class="p-1"><input type="date" class="form-control form-control-sm" /></td>
+                    <td class="p-1"><select class="form-select form-select-sm"><option selected>Select...</option></select></td>
+                    <td class="p-1"><input type="text" class="form-control form-control-sm" /></td>
+                    <td class="p-1"><input type="email" class="form-control form-control-sm" /></td>
+                    <td class="p-1"><input type="text" class="form-control form-control-sm" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-end mt-3">
+
+        <button type="button" class="btn btn-sm btn-outline-primary" id="addMawbNoteRowBtn">Add Row</button>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    // --- Add this new block for the MAWB Note Table ---
+    const addMawbNoteBtn = document.getElementById('addMawbNoteRowBtn');
+    if (addMawbNoteBtn) { // Check if the button exists
+        const mawbNoteTableBody = document.getElementById('mawbNoteTableBody');
+
+        addMawbNoteBtn.addEventListener('click', function () {
+            const rowCount = mawbNoteTableBody.rows.length;
+            const newRow = mawbNoteTableBody.insertRow(rowCount);
+
+            newRow.innerHTML = `
+                <td class="p-1"><input type="text" class="form-control form-control-sm" value="${rowCount + 1}" readonly/></td>
+                <td class="p-1"><input type="date" class="form-control form-control-sm"/></td>
+                <td class="p-1"><input type="date" class="form-control form-control-sm"/></td>
+                <td class="p-1"><select class="form-select form-select-sm"><option selected>Select...</option></select></td>
+                <td class="p-1"><input type="text" class="form-control form-control-sm"/></td>
+                <td class="p-1"><input type="email" class="form-control form-control-sm"/></td>
+                <td class="p-1"><input type="text" class="form-control form-control-sm"/></td>
+            `;
+        });
+    }
+
+
+
+});
+</script>
+
+          <!-- Links Pane -->
+          <div class="tab-pane fade p-3" id="mawb-links" role="tabpanel">
+            <div class="row"><div class="col-md-8"><div class="mb-3 row"><label for="job-comment" class="col-md-2 col-form-label">Job Comment</label><div class="col-md-10"><input class="form-control" type="text" id="job-comment"></div></div><hr><div class="row"><div class="col-md-3 d-grid gap-2"><button class="btn btn-outline-secondary" type="button">Create Invoice</button><button class="btn btn-outline-secondary" type="button">Create Credit Note (Rev)</button><button class="btn btn-outline-secondary" type="button">Create Credit Note (Cost)</button><button class="btn btn-outline-secondary" type="button">Invoice/Credit Note List</button><button class="btn btn-outline-secondary" type="button">Cost Invoice Voucher</button></div><div class="col-md-3 d-grid gap-2"><button class="btn btn-outline-secondary" type="button">Provisional Cost</button><button class="btn btn-outline-secondary" type="button">Local Purchase Order</button><button class="btn btn-outline-secondary" type="button">Payment Request</button><button class="btn btn-outline-secondary" type="button">Payment Voucher</button></div><div class="col-md-3 d-grid gap-2"><button class="btn btn-outline-secondary" type="button">Creditors Journal</button><button class="btn btn-outline-secondary" type="button">Job Ledger</button><button class="btn btn-outline-secondary" type="button">Attach Document</button><button class="btn btn-outline-secondary" type="button">Issued Documents</button></div><div class="col-md-3 d-grid gap-2"><button class="btn btn-danger" type="button">Job Close</button><button class="btn btn-outline-secondary" type="button">Job Comment History</button><button class="btn btn-outline-secondary" type="button">Job Signoff</button></div></div></div><div class="col-md-4"><div class="card mb-4"><div class="card-body"><div class="mb-3 row"><label for="create-user" class="col-md-4 col-form-label">Create User</label><div class="col-md-8"><input class="form-control" type="text" id="create-user" readonly></div></div><div class="mb-3 row"><label for="run-user" class="col-md-4 col-form-label">Run User</label><div class="col-md-8"><input class="form-control" type="text" id="run-user" readonly></div></div></div></div><div class="card"><h5 class="card-header" style="padding: 0.75rem 1.25rem;">Get Import Job Details</h5><div class="card-body"><div class="mb-3"><label class="form-label">Job</label><input class="form-control" type="text" placeholder="Enter Job No..."></div><div class="d-grid"><button class="btn btn-primary" type="button">Get Details</button></div></div></div></div></div>
+          </div>
+
+          <!-- =================================================== -->
+<!-- EVENT / REFERENCE TAB PANE  -->
+<!-- =================================================== -->
+<div class="tab-pane fade p-3" id="mawb-event" role="tabpanel">
+    <div class="card mb-4">
+        <div class="card-body py-3 px-4">
+            <div class="row align-items-center">
+                <div class="col-md-auto me-4">
+                    <h5 class="card-title mb-0">Job Reference</h5>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Segment</label>
+                    <input type="text" readonly class="form-control" value="AIE" />
+                </div>
+                 <div class="col-md-4">
+                    <label class="form-label">Job</label>
+                    <input type="text" class="form-control" placeholder="Job Number..." />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Events Column -->
+        <div class="col-md-6">
+            <div class="card">
+                <h5 class="card-header">Events</h5>
+                <div class="card-body p-3">
+                     <div class="table-responsive">
+                         <table class="table table-bordered">
+                             <thead><tr class="table-light"><th style="width: 10%;">SNo</th><th style="width: 20%;">Code <span class="text-danger">*</span></th><th style="width: 20%;">Date <span class="text-danger">*</span></th><th style="width: 15%;">Time</th><th>Note</th></tr></thead>
+                             <tbody>
+                                 <tr><td class="p-1"><input type="text" class="form-control form-control-sm" readonly/></td><td class="p-1"><input type="text" class="form-control form-control-sm"/></td><td class="p-1"><input type="date" class="form-control form-control-sm"/></td><td class="p-1"><input type="time" class="form-control form-control-sm"/></td><td class="p-1"><input type="text" class="form-control form-control-sm"/></td></tr>
+                                 <tr><td class="p-1"><input type="text" class="form-control form-control-sm" readonly/></td><td class="p-1"><input type="text" class="form-control form-control-sm"/></td><td class="p-1"><input type="date" class="form-control form-control-sm"/></td><td class="p-1"><input type="time" class="form-control form-control-sm"/></td><td class="p-1"><input type="text" class="form-control form-control-sm"/></td></tr>
+                             </tbody>
+                         </table>
+                    </div>
+                    <hr class="my-3">
+                    <div class="row align-items-center">
+                         <div class="col-md-8">
+                             <label class="form-label">Event Name</label>
+                             <input type="text" readonly class="form-control"/>
+                         </div>
+                         <div class="col-md-4 text-end">
+                            <button class="btn btn-sm btn-outline-primary" type="button">Add Row</button>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- References Column -->
+        <div class="col-md-6">
+             <div class="card">
+                <h5 class="card-header">References</h5>
+                <div class="card-body p-3">
+                    <div class="table-responsive">
+                         <table class="table table-bordered">
+                             <thead><tr class="table-light"><th style="width: 10%;">SNo</th><th style="width: 20%;">Code <span class="text-danger">*</span></th><th style="width: 30%;">Number <span class="text-danger">*</span></th><th>Note</th></tr></thead>
+                             <tbody>
+                                  <tr><td class="p-1"><input type="text" class="form-control form-control-sm" readonly/></td><td class="p-1"><input type="text" class="form-control form-control-sm"/></td><td class="p-1"><input type="text" class="form-control form-control-sm"/></td><td class="p-1"><input type="text" class="form-control form-control-sm"/></td></tr>
+                                  <tr><td class="p-1"><input type="text" class="form-control form-control-sm" readonly/></td><td class="p-1"><input type="text" class="form-control form-control-sm"/></td><td class="p-1"><input type="text" class="form-control form-control-sm"/></td><td class="p-1"><input type="text" class="form-control form-control-sm"/></td></tr>
+                             </tbody>
+                         </table>
+                    </div>
+                    <hr class="my-3">
+                     <div class="row align-items-center">
+                         <div class="col-md-8">
+                             <label class="form-label">Reference Name</label>
+                             <input type="text" readonly class="form-control"/>
+                         </div>
+                         <div class="col-md-4 text-end">
+                             <button class="btn btn-sm btn-outline-primary" type="button">Add Row</button>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================ -->
+          <!-- LINK JOB TAB PANE  -->
+          <!-- ============================ -->
+          <div class="tab-pane fade p-3" id="mawb-linkjob" role="tabpanel">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Link Another Job</h5>
+                            <p class="card-subtitle mb-3">Enter the full job number to link it to the current MAWB.</p>
+
+                            <div class="mb-3">
+                                <label for="link-job-input" class="form-label">Job Number</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">Segment</span>
+                                    <input type="text" class="form-control" placeholder="e.g., AIE" aria-label="Segment">
+                                    <input type="text" class="form-control" placeholder="Job Number" aria-label="Job Number">
+                                    <input type="text" class="form-control" placeholder="Year" aria-label="Year">
+                                </div>
+                                <div id="link-job-help" class="form-text">
+                                  Please provide the Segment, Job Number, and Year.
+                                </div>
+                            </div>
+
+                            <div class="mt-4 text-end">
+                                 <button type="button" class="btn btn-primary">Link Job</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Action Buttons -->
+<div class="row mt-4">
+    <div class="col-12 text-center">
+        <button type="submit" class="btn btn-primary me-2">Save Job</button>
+        <button type="reset" class="btn btn-label-secondary">Cancel</button>
+    </div>
+</div>
+    </div>
+  </div>
+
+
+  <!-- HAWB SECTION  -->
+
+
+  <div class="accordion-item active">
+    <h2 class="accordion-header" id="headingHawb">
+      <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseHawb" aria-expanded="true" aria-controls="collapseHawb">
+        <i class="bx bxs-file me-2"></i>
+        HAWB Details
+      </button>
+    </h2>
+    <div id="collapseHawb" class="accordion-collapse collapse show" aria-labelledby="headingHawb" data-bs-parent="#airJobAccordion">
+      <div class="accordion-body">
+        <!-- HAWB Sub-Tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item"><button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-info" aria-controls="hawb-info" aria-selected="true">HAWB</button></li>
+
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-party" aria-controls="hawb-party" aria-selected="false">Party</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-connection" aria-controls="hawb-connection" aria-selected="false">Connection</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-email" aria-controls="hawb-email" aria-selected="false">eMail</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-dimension" aria-controls="hawb-dimension" aria-selected="false">Dimension</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-others" aria-controls="hawb-others" aria-selected="false">Others</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-delivery" aria-controls="hawb-delivery" aria-selected="false">Delivery</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-charge" aria-controls="hawb-charge" aria-selected="false">Charge</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-note" aria-controls="hawb-note" aria-selected="false">Note</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-bill-of-entry" aria-controls="hawb-bill-of-entry" aria-selected="false">Bill of Entry</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-collection" aria-controls=" hawb-collection" aria-selected="false">Collection</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-event" aria-controls="hawb-event" aria-selected="false">Event / Reference</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-links" aria-controls="hawb-links" aria-selected="false">Links</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-municipality" aria-controls="hawb-municipality" aria-selected="false">Municipality</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-customs" aria-controls="hawb-customs" aria-selected="false">Customs</button></li>
+
+
+
+
+
+        </ul>
+        <div class="tab-content">
+          <!-- HAWB Info Pane -->
+          <div class="tab-pane fade show active p-3" id="hawb-info" role="tabpanel">
+            <div class="row">
+                <!-- Left Column: HAWB Parties -->
+                <div class="col-md-7">
+                    <div class="card">
+                        <div class="card-body">
+                             <div class="row">
+                                <div class="col-md-6 mb-3"><label class="form-label">Subjob <span class="text-danger">*</span></label><input type="text" class="form-control"/></div>
+                                <div class="col-md-6 mb-3"><label class="form-label">Trade <span class="text-danger">*</span></label><input type="text" class="form-control"/></div>
+                                <div class="col-md-6 mb-3"><label class="form-label">HAWB <span class="text-danger">*</span></label><input type="text" class="form-control"/></div>
+                                <div class="col-md-6 mb-3"><label class="form-label">HAWB Dt.<span class="text-danger">*</span></label><input type="text" class="form-control"/></div>
+
+                            </div>
+                            <div class="mb-3"><label class="form-label">Manifest HAWB</label><div class="input-group"><input type="text" class="form-control"/></div></div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3"><label class="form-label">POR <span class="text-danger">*</span></label><input type="text" class="form-control"/></div>
+                                <div class="col-md-6 mb-3"><label class="form-label">FDC <span class="text-danger">*</span></label><input type="text" class="form-control"/></div>
+                            </div>
+                            <div class="mb-3"><label class="form-label">Shipper<span class="text-danger">*</span></label><div class="input-group"><input type="text" class="form-control"/></div></div>
+                             <div class="mb-3"><label class="form-label">Address</label><textarea class="form-control" rows="2"></textarea></div>
+                             <div class="mb-3"><label class="form-label">Consignee <span class="text-danger">*</span></label><div class="input-group"><input type="text" class="form-control"/><button class="btn btn-outline-primary" type="button"><i class="bx bx-search"></i></button></div></div>
+                             <div class="mb-3"><label class="form-label">Address</label><textarea class="form-control" rows="2"></textarea></div>
+                            <div class="mb-3"><label class="form-label"> First Notify</label><div class="input-group"><input type="text" class="form-control"/><button class="btn btn-outline-primary" type="button"><i class="bx bx-search"></i></button></div></div>
+                             <div class="mb-3"><label class="form-label">Address</label><textarea class="form-control" rows="2"></textarea></div>
+                            <hr class="my-4">
+                            <div class="mb-3"><label class="form-label">Pro/Exhib Name</label><div class="input-group"><input type="text" class="form-control"/></div></div>
+                            <div class="row">
+                                <div class="col-md-3 mb-3"><label class="form-label">Invoice To </label><select class="form-select"><option>Agent</option> <option>Consignee</option><option>Notify</option></select></div>
+                                <div class="col-md-3 mb-3"><label class="form-label">Freight <span class="text-danger">*</span></label><select class="form-select"><option>Prepaid</option> <option>Collect</option></select></div>
+                                <div class="col-md-3 mb-3"><label class="form-label">TOS<span class="text-danger">*</span></label><input type="text" class="form-control"/></div>
+                                <div class="col-md-3 mb-3">
+    <label class="form-label">Intl.Pack</label>
+    <!-- ▼▼ TEXT INPUT CHANGED TO DROPDOWN ▼▼ -->
+    <select class="form-select">
+        <option selected>Select...</option>
+        <option>BAG(S)</option>
+        <option>BAILS</option>
+        <option>BOX(ES)</option>
+        <option>CARTON(S)</option>
+    </select>
+</div>
+<div class="col-md-3 mb-3">
+    <label class="form-label">Extl.Pack<span class="text-danger">*</span></label>
+    <!-- ▼▼ TEXT INPUT CHANGED TO DROPDOWN ▼▼ -->
+    <select class="form-select">
+        <option selected>Select...</option>
+        <option>BAG(S)</option>
+        <option>BAILS</option>
+        <option>BOX(ES)</option>
+        <option>CARTON(S)</option>
+    </select>
+</div>
+                                <div class="col-md-3 mb-3"><label class="form-label">Routed <span class="text-danger">*</span></label><select class="form-select"><option>Agent</option><option>Self</option></select></div>
+                                <div class="col-md-3 mb-3"><label class="form-label">Routed by <span class="text-danger">*</span></label><input type="text" class="form-control"/></div>
+                                <div class="col-md-3 mb-3"><label class="form-label">LC <span class="text-danger">*</span></label><select class="form-select"><option>Yes</option><option>No</option></select></div>
+                                <div class="col-md-3 mb-3"><label class="form-label">Door Delivery </label><select class="form-select"><option>Yes</option><option>No</option></select></div>
+                                <div class="col-md-3 mb-3"><label class="form-label">Status </label><input type="text" class="form-control"/></div>
+                            </div>
+                            <div class="mb-3"><label class="form-label">Commodity</label><input type="text" class="form-control"/></div>
+                            <div class="mb-3"><label class="form-label">Mark No</label><textarea class="form-control" rows="3"></textarea></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: HAWB Status (Rebuilt from Image) -->
+<div class="col-md-5">
+    <div class="card h-90">
+        <div class="card-body">
+
+           <!-- ======================================= -->
+<!-- DO and CAN Section (Enhanced Look)      -->
+<!-- ======================================= -->
+<div class="row g-4 mb-4">
+    <!-- DO Card -->
+    <div class="col-md-6">
+        <div class="card h-100">
+            <h5 class="card-header">DO</h5>
+            <div class="card-body">
+                <!-- Number Field -->
+                <div class="mb-3">
+                    <label for="do-number" class="form-label">Number</label>
+                    <div class="input-group">
+                        <input type="text" id="do-number" class="form-control">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <!-- Issued By Field -->
+                <div>
+                    <label for="do-issued-by" class="form-label">Issued By</label>
+                    <div class="input-group">
+                        <input type="text" id="do-issued-by" class="form-control">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAN Card -->
+    <div class="col-md-6">
+        <div class="card h-100">
+            <h5 class="card-header">CAN</h5>
+            <div class="card-body">
+                <!-- Issued By Field -->
+                <div class="mb-3">
+                    <label for="can-issued-by" class="form-label">Issued By</label>
+                    <input type="text" id="can-issued-by" class="form-control">
+                </div>
+                <!-- Date Field -->
+                <div>
+                    <label for="can-date" class="form-label">Date</label>
+                    <input type="date" id="can-date" class="form-control" placeholder="mm/dd/yyyy">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- Notes Section -->
+            <div class="mb-2">
+                <label class="form-label">Commodity</label>
+                <textarea class="form-control form-control-sm" rows="2"></textarea>
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Marks & No</label>
+                <textarea class="form-control form-control-sm" rows="2"></textarea>
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Internal Note</label>
+                <textarea class="form-control form-control-sm" rows="2"></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Note</label>
+                <textarea class="form-control form-control-sm" rows="2"></textarea>
+            </div>
+
+
+<div class="row g-3">
+    <!-- Column 1: Hold Dropdown -->
+    <div class="col-sm-4">
+        <label for="hold-status-select" class="form-label form-label-sm">Hold</label>
+        <select id="hold-status-select" class="form-select form-select-sm">
+            <option selected>Select...</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+    <!-- Column 2: Hold Note -->
+    <div class="col-sm-4">
+        <label for="hold-note-input" class="form-label form-label-sm">Hold Note</label>
+        <input type="text" id="hold-note-input" class="form-control form-control-sm" placeholder="Enter hold note...">
+    </div>
+    <!-- Column 3: Release Note -->
+    <div class="col-sm-4">
+        <label for="release-note-input" class="form-label form-label-sm">Release Note</label>
+        <input type="text" id="release-note-input" class="form-control form-control-sm" placeholder="Enter release note...">
+    </div>
+</div>
+
+        </div>
+    </div>
+</div>
+            </div>
+
+            <!-- Measurement Section -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <h5 class="card-header">Measurement</h5>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2 mb-3"><label class="form-label">Extl.Pcs <span class="text-danger">*</span></label><input type="text" class="form-control"/></div>
+                                <div class="col-md-2 mb-3"><label class="form-label">Intl.Pcs</label><input type="text" class="form-control"/></div>
+                                <div class="col-md-2 mb-3"><label class="form-label">Gr Weight <span class="text-danger">*</span></label><input type="text" class="form-control"/></div>
+                                <div class="col-md-2 mb-3"><label class="form-label">Vol Weight</label><input type="text" class="form-control"/></div>
+                                <div class="col-md-2 mb-3"><label class="form-label">Net Weight</label><input type="text" class="form-control"/></div>
+                                <div class="col-md-2 mb-3"><label class="form-label">Char.Weight<span class="text-danger">*</span></label><input type="text" class="form-control"/></div>
+                                <div class="col-md-2 mb-3"><label class="form-label">Volume</label><input type="text" class="form-control"/></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+          <!-- ======================================= -->
+<!-- PARTY TAB PANE (Complex Layout)         -->
+<!-- ======================================= -->
+<div class="tab-pane fade p-3" id="hawb-party" role="tabpanel">
+    <div class="card">
+        <div class="card-body">
+            <!-- Top: Subjob Reference -->
+            <fieldset class="border p-3 mb-4">
+                <legend class="float-none w-auto px-2 fs-6">Subjob Reference</legend>
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="party-segment" class="col-form-label">Segment</label>
+                    </div>
+                    <div class="col-md-1">
+                        <input type="text" id="party-segment" class="form-control">
+                    </div>
+                    <div class="col-auto">
+                        <label for="party-subjob" class="col-form-label">Subjob</label>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" id="party-subjob" class="form-control">
+                    </div>
+                    <div class="col-auto">
+                        <label for="party-hawb" class="col-form-label">HAWB</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" id="party-hawb" class="form-control">
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Main Content Grid -->
+            <div class="row g-4">
+                <!-- Left Column -->
+                <div class="col-lg-6">
+                    <div class="row mb-3">
+                        <label for="second-notify" class="col-sm-3 col-form-label">Second Notify</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <select id="second-notify" class="form-select">
+                                    <option selected>Select...</option>
+                                </select>
+                                <div class="input-group-text">
+                                    <input class="form-check-input mt-0" type="checkbox">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="second-notify-address" class="col-sm-3 col-form-label">Address</label>
+                        <div class="col-sm-9">
+                            <textarea id="second-notify-address" class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="billing-customer" class="col-sm-3 col-form-label">Billing Customer</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <select id="billing-customer" class="form-select">
+                                    <option selected>Select...</option>
+                                </select>
+                                <div class="input-group-text">
+                                    <input class="form-check-input mt-0" type="checkbox">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="billing-customer-address" class="col-sm-3 col-form-label">Address</label>
+                        <div class="col-sm-9">
+                            <textarea id="billing-customer-address" class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="billing-state" class="col-sm-3 col-form-label">State</label>
+                        <div class="col-sm-4">
+                            <input type="text" id="billing-state" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="transporter" class="col-sm-3 col-form-label">Transporter</label>
+                        <div class="col-sm-9">
+                             <div class="input-group">
+                                <select id="transporter" class="form-select">
+                                    <option selected>Select...</option>
+                                </select>
+                                <div class="input-group-text">
+                                    <input class="form-check-input mt-0" type="checkbox">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <label for="transporter-address" class="col-sm-3 col-form-label">Address</label>
+                        <div class="col-sm-9">
+                            <textarea id="transporter-address" class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="col-lg-6">
+                     <div class="row mb-3">
+                        <label for="customs-hawb" class="col-sm-3 col-form-label">Customs HAWB No</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="customs-hawb" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="global-id" class="col-sm-3 col-form-label">Global ID</label>
+                        <div class="col-sm-9">
+                             <div class="input-group">
+                                <input type="text" id="global-id" class="form-control">
+                                <div class="input-group-text">
+                                    <input class="form-check-input mt-0" type="checkbox">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="cha" class="col-sm-3 col-form-label">CHA</label>
+                        <div class="col-sm-9">
+                             <div class="input-group">
+                                <select id="cha" class="form-select">
+                                    <option selected>Select...</option>
+                                </select>
+                                <div class="input-group-text">
+                                    <input class="form-check-input mt-0" type="checkbox">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3 mt-5">
+                        <label for="act-shipper" class="col-sm-3 col-form-label">Act Shipper</label>
+                        <div class="col-sm-9">
+                             <div class="input-group">
+                                <input type="text" id="act-shipper" class="form-control">
+                                <div class="input-group-text">
+                                    <input class="form-check-input mt-0" type="checkbox">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="act-consignee" class="col-sm-3 col-form-label">Act Consignee</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="act-consignee" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CONNECTION TAB PANE  -->
+<!-- ======================================= -->
+<div class="tab-pane fade p-3" id="hawb-connection" role="tabpanel">
+    <div class="card">
+        <div class="card-body" >
+
+            <!-- Top: Subjob Reference -->
+            <fieldset class="border p-3 mb-4">
+                <legend class="float-none w-auto px-2 fs-6">Subjob Reference</legend>
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="conn-segment" class="col-form-label">Segment</label>
+                    </div>
+                    <div class="col-md-2 col-lg-1">
+                        <input type="text" id="conn-segment" class="form-control">
+                    </div>
+                    <div class="col-auto">
+                        <label for="conn-subjob" class="col-form-label">Subjob</label>
+                    </div>
+                    <div class="col-md-3 col-lg-2">
+                        <input type="text" id="conn-subjob" class="form-control">
+                    </div>
+                    <div class="col-auto">
+                        <label for="conn-hawb" class="col-form-label">HAWB</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" id="conn-hawb" class="form-control">
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Middle: Sea/Air, Transit, POD -->
+<div class="row g-3 mb-4">
+  <div class="col-lg-12">
+    <!-- Sea/Air + Transit Port -->
+    <div class="row align-items-center mb-2">
+      <!-- Sea/Air -->
+      <div class="col-md-3">
+        <div class="row align-items-center">
+          <label for="conn-sea-air" class="col-auto col-form-label">
+            <span class="text-danger">*</span>Sea/Air
+          </label>
+          <div class="col">
+            <select id="conn-sea-air" class="form-select form-select-sm">
+              <option selected>No</option>
+              <option>Yes</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transit Port -->
+      <label for="conn-transit-port" class="col-md-2 col-form-label text-md-end">Transit Port</label>
+      <div class="col-md-3">
+        <input type="text" id="conn-transit-port" class="form-control form-control-sm">
+      </div>
+    </div>
+
+    <!-- POD -->
+    <div class="row align-items-center">
+      <div class="col-md-3"></div>
+      <label for="conn-pod" class="col-md-2 col-form-label text-md-end">POD</label>
+      <div class="col-md-3">
+        <input type="text" id="conn-pod" class="form-control form-control-sm">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+            <!-- Bottom: Data Grid -->
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm align-middle">
+                    <thead class="table-light">
+                        <tr class="text-center">
+                            <th style="width: 8%;">Segment</th>
+                            <th style="width: 10%;">Job No</th>
+                            <th style="width: 12%;">Subjob</th>
+                            <th style="width: 10%;">ETA</th>
+                            <th style="width: 9%;">Extl Pack</th>
+                            <th>Pack Description</th>
+                            <th style="width: 8%;">Extl.Pcs</th>
+                            <th style="width: 9%;">Gr. Weight</th>
+                            <th style="width: 9%;">Vol. Weight</th>
+                            <th style="width: 9%;">Char. Weight</th>
+                            <th style="width: 8%;">Volume</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Repeat this row structure for each entry -->
+                        <tr>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control">
+                                    <button class="btn btn-light border" type="button">...</button>
+                                </div>
+                            </td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control">
+                                    <button class="btn btn-light border" type="button">...</button>
+                                </div>
+                            </td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                        </tr>
+                         <tr>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control">
+                                    <button class="btn btn-light border" type="button">...</button>
+                                </div>
+                            </td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                        </tr>
+                         <tr>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control">
+                                    <button class="btn btn-light border" type="button">...</button>
+                                </div>
+                            </td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- EMAIL TAB PANE -->
+<!-- ======================================= -->
+<div class="tab-pane fade p-3" id="hawb-email" role="tabpanel">
+    <div class="card">
+        <div class="card-body" >
+
+            <!-- Top: Subjob Reference -->
+            <fieldset class="border p-3 mb-4">
+                <legend class="float-none w-auto px-2 fs-6">Subjob Reference</legend>
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="email-segment" class="col-form-label">Segment</label>
+                    </div>
+                    <div class="col-md-2 col-lg-1">
+                        <input type="text" id="email-segment" class="form-control">
+                    </div>
+                    <div class="col-auto">
+                        <label for="email-subjob" class="col-form-label">Subjob</label>
+                    </div>
+                    <div class="col-md-3 col-lg-2">
+                        <input type="text" id="email-subjob" class="form-control">
+                    </div>
+                    <div class="col-auto">
+                        <label for="email-hawb" class="col-form-label">HAWB</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" id="email-hawb" class="form-control">
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Auto eMail Required -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="row align-items-center">
+                        <label for="auto-email" class="col-md-4 col-form-label">Auto eMail Required</label>
+                        <div class="col-md-5">
+                            <select id="auto-email" class="form-select">
+                                <option selected>Select...</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="row g-4">
+                <!-- Left Column: eMail Fields -->
+                <div class="col-lg-7">
+                    <fieldset class="border p-3 h-100">
+                        <legend class="float-none w-auto px-2 fs-6">eMail</legend>
+                        <div class="row mb-3 align-items-center">
+                            <label for="shipper-email" class="col-sm-4 col-form-label">Shipper eMail</label>
+                            <div class="col-sm-8">
+                                <input type="email" id="shipper-email" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mb-3 align-items-center">
+                            <label for="consignee-email" class="col-sm-4 col-form-label">Consignee eMail</label>
+                            <div class="col-sm-8">
+                                <input type="email" id="consignee-email" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mb-3 align-items-center">
+                            <label for="first-notify-email" class="col-sm-4 col-form-label">First Notify eMail</label>
+                            <div class="col-sm-8">
+                                <input type="email" id="first-notify-email" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mb-3 align-items-center">
+                            <label for="second-notify-email" class="col-sm-4 col-form-label">Second Notify eMail</label>
+                            <div class="col-sm-8">
+                                <input type="email" id="second-notify-email" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mb-3 align-items-center">
+                            <label for="por-agent-email" class="col-sm-4 col-form-label">POR Agent eMail</label>
+                            <div class="col-sm-8">
+                                <input type="email" id="por-agent-email" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <label for="fdc-agent-email" class="col-sm-4 col-form-label">FDC Agent eMail</label>
+                            <div class="col-sm-8">
+                                <input type="email" id="fdc-agent-email" class="form-control">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <!-- eMail Subject Section -->
+
+            <div class="col-lg-5">
+                <fieldset class="border p-3 h-100">
+                <legend class="float-none w-auto px-2 fs-6">eMail Subject</legend>
+                <div class="row">
+                <label for="email-subject-customer" class="col-auto col-form-label">Customer</label>
+            <div class="col">
+                <textarea id="email-subject-customer" class="form-control" rows="5"></textarea>
+            </div>
+        </div>
+    </fieldset>
+</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- DIMENSION TAB PANE  -->
+
+<style>
+    /* Custom style for the dotted update button */
+    .btn-update-dotted {
+        border: 1px dotted #000;
+        background-color: #f0f0f0;
+        border-radius: 0;
+    }
+    .btn-update-dotted:hover {
+        background-color: #e0e0e0;
+    }
+    /* Style for the scrollable table body container */
+    .dimension-table-container {
+        max-height: 250px; /* Adjust height as needed */
+        overflow-y: auto;
+        border: 1px solid #ccc;
+    }
+</style>
+
+<div class="tab-pane fade p-3" id="hawb-dimension" role="tabpanel">
+    <div class="card">
+        <div class="card-body" >
+            <!-- Top Controls Row -->
+            <div class="row align-items-center mb-3">
+                <div class="col-lg-8">
+                    <fieldset class="border px-3 pt-2 pb-3">
+                        <legend class="float-none w-auto px-2 fs-6">Subjob Reference</legend>
+                        <div class="row g-3 align-items-center">
+                            <label for="dim-segment-classic" class="col-auto col-form-label">Segment</label>
+                            <div class="col-2">
+                                <input type="text" class="form-control form-control-sm" id="dim-segment-classic">
+                            </div>
+                            <label for="dim-subjob-classic" class="col-auto col-form-label">Subjob</label>
+                            <div class="col-3">
+                                <input type="text" class="form-control form-control-sm" id="dim-subjob-classic">
+                            </div>
+                            <label for="dim-hawb-classic" class="col-auto col-form-label">HAWB</label>
+                            <div class="col">
+                                <input type="text" class="form-control form-control-sm" id="dim-hawb-classic">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-lg-4 mt-3 mt-lg-0">
+                     <div class="row align-items-center">
+                        <label for="dimension-unit-classic" class="col-auto col-form-label">Dimension Unit</label>
+                        <div class="col">
+                           <input type="text" class="form-control form-control-sm" id="dimension-unit-classic">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dimension Table -->
+            <div class="dimension-table-container">
+                 <table class="table table-bordered table-sm mb-0">
+                    <thead class="text-center table-light" style="position: sticky; top: 0;">
+                        <tr>
+                            <th style="width: 6%;">SNo</th>
+                            <th style="width: 10%;">Pieces <span class="text-danger">*</span></th>
+                            <th style="width: 10%;">Length <span class="text-danger">*</span></th>
+                            <th style="width: 10%;">Width <span class="text-danger">*</span></th>
+                            <th style="width: 10%;">Height <span class="text-danger">*</span></th>
+                            <th style="width: 10%;">Value</th>
+                            <th style="width: 10%;">Vol.Weight</th>
+                            <th>Note</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dimensionTableBodyClassic">
+                        <!-- Row 1 -->
+                        <tr class="data-row">
+                            <td><input type="text" class="form-control form-control-sm text-center" value="1" readonly></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                        </tr>
+                        <!-- Operators Row -->
+                        <tr class="text-center fw-bold">
+                           <td></td><td></td><td>X</td><td>X</td><td>X</td><td>/</td><td>=</td><td></td>
+                        </tr>
+                        <!-- Row 2 -->
+                        <tr class="data-row">
+                           <td><input type="text" class="form-control form-control-sm text-center" value="2" readonly></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                        </tr>
+                        <!-- Operators Row -->
+                        <tr class="text-center fw-bold">
+                           <td></td><td></td><td>X</td><td>X</td><td>X</td><td>/</td><td>=</td><td></td>
+                        </tr>
+                        <!-- Row 3 -->
+                        <tr class="data-row">
+                           <td><input type="text" class="form-control form-control-sm text-center" value="3" readonly></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                        </tr>
+                        <!-- Operators Row -->
+                        <tr class="text-center fw-bold">
+                           <td></td><td></td><td>X</td><td>X</td><td>X</td><td>/</td><td>=</td><td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bottom Controls -->
+            <div class="d-flex justify-content-end align-items-center mt-3">
+                 <button type="button" class="btn btn-sm btn-outline-primary me-auto" id="addDimensionRowBtnClassic">
+                    Add Row
+                </button>
+                <label for="dim-total-volume-classic" class="col-form-label me-2">Total Volume</label>
+                <input type="text" id="dim-total-volume-classic" class="form-control form-control-sm me-3" style="width: 150px;" readonly>
+                <button type="button" class="btn btn-sm btn-update-dotted">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const addBtn = document.getElementById('addDimensionRowBtnClassic');
+    const tableBody = document.getElementById('dimensionTableBodyClassic');
+
+    // Check if the essential elements exist to prevent script errors
+    if (addBtn && tableBody) {
+        addBtn.addEventListener('click', function () {
+
+            // --- CORRECTED & ROBUST ROW COUNTING LOGIC ---
+            // We find all table rows that have the 'data-row' class within our table body.
+            // This gives us an accurate count of how many data entry rows currently exist.
+            const currentDataRowCount = tableBody.querySelectorAll('.data-row').length;
+
+            // For debugging: You can check your browser's console (F12) to see this number.
+            console.log('Found', currentDataRowCount, 'data rows. New row will be number', currentDataRowCount + 1);
+
+            // The new serial number is simply the current count + 1.
+            const newSrNo = currentDataRowCount + 1;
+
+            // --- CREATE NEW ROWS ---
+            // 1. Create the data entry row
+            const newDataRow = document.createElement('tr');
+            newDataRow.classList.add('data-row'); // Add the class so it gets counted next time
+            newDataRow.innerHTML = `
+                <td><input type="text" class="form-control form-control-sm text-center" value="${newSrNo}" readonly></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+            `;
+
+            // 2. Create the corresponding mathematical operator row
+            const newOperatorRow = document.createElement('tr');
+            newOperatorRow.className = 'text-center fw-bold';
+            newOperatorRow.innerHTML = `
+                <td></td><td></td><td>X</td><td>X</td><td>X</td><td>/</td><td>=</td><td></td>
+            `;
+
+            // Append both new rows to the table to maintain the visual structure
+            tableBody.appendChild(newDataRow);
+            tableBody.appendChild(newOperatorRow);
+        });
+    } else {
+        console.error("Crucial elements for the dimension tab were not found. 'Add Row' button will not work.");
+    }
+});
+</script>
+
+<!-- ======================================= -->
+<!-- OTHERS TAB PANE (Refactored with Improved Spacing) -->
+<!-- ======================================= -->
+<div class="tab-pane fade p-3" id="hawb-others" role="tabpanel">
+    <div class="card">
+        <div class="card-body">
+
+            <!-- Top: Subjob Reference -->
+            <fieldset class="border px-3 pt-2 pb-3 mb-4">
+                <legend class="float-none w-auto px-2 fs-6">Subjob Reference</legend>
+                <div class="row g-3 align-items-center">
+                    <label for="others-segment" class="col-auto col-form-label col-form-label-sm">Segment</label>
+                    <div class="col-md-1">
+                        <input type="text" id="others-segment" class="form-control form-control-sm">
+                    </div>
+                    <label for="others-subjob" class="col-auto col-form-label col-form-label-sm">Subjob</label>
+                    <div class="col-md-2">
+                        <input type="text" id="others-subjob" class="form-control form-control-sm">
+                    </div>
+                    <label for="others-hawb" class="col-auto col-form-label col-form-label-sm">HAWB</label>
+                    <div class="col">
+                        <input type="text" id="others-hawb" class="form-control form-control-sm">
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Main Content Grid -->
+            <div class="row g-4">
+
+                <!-- Column 1 (Left) -->
+                <div class="col-lg-4">
+                    <div class="mb-2">
+                        <label class="form-label">Nomination No</label>
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control">
+                            <button class="btn btn-light border" type="button">...</button>
+                        </div>
+                    </div>
+                    <div class="mb-2"><label class="form-label">Comment Code</label><input type="text" class="form-control form-control-sm"></div>
+                    <div class="mb-2"><label class="form-label">Charge Note</label><input type="text" class="form-control form-control-sm"></div>
+                    <div class="mb-2"><label class="form-label">LC Note</label><input type="text" class="form-control form-control-sm"></div>
+                    <div class="mb-2"><label class="form-label">Bank Name</label><input type="text" class="form-control form-control-sm"></div>
+                    <div class="mb-2"><label class="form-label">CCN No</label><input type="text" class="form-control form-control-sm"></div>
+                    <div class="row">
+                        <div class="col-md-6 mb-2"><label class="form-label">UC No</label><input type="text" class="form-control form-control-sm"></div>
+                        <div class="col-md-6 mb-2"><label class="form-label">Ref. No</label><input type="text" class="form-control form-control-sm"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-2"><label class="form-label">Badge No</label><input type="text" class="form-control form-control-sm"></div>
+                        <div class="col-md-6 mb-2"><label class="form-label">CPC</label><input type="text" class="form-control form-control-sm"></div>
+                    </div>
+                    <div class="mb-2"><label class="form-label">Item No</label><input type="text" class="form-control form-control-sm"></div>
+                    <div class="row">
+                        <div class="col-md-6 mb-2"><label class="form-label">NAC Ref. No.</label><input type="text" class="form-control form-control-sm"></div>
+                        <div class="col-md-6 mb-2"><label class="form-label">NAC Name</label><input type="text" class="form-control form-control-sm"></div>
+                    </div>
+                    <div class="mb-2"><label class="form-label">Our Transport</label><select class="form-select form-select-sm"></select></div>
+
+                    <fieldset class="border px-3 pt-2 pb-3 mt-4">
+                        <legend class="float-none w-auto px-2 fs-6">IMCO</legend>
+                        <div class="mb-2"><label class="form-label">Hazardous</label><select class="form-select form-select-sm"></select></div>
+                        <div class="row">
+                            <div class="col-md-6 mb-2"><label class="form-label">Name</label><input type="text" class="form-control form-control-sm"></div>
+                            <div class="col-md-6 mb-2"><label class="form-label">Flash Point</label><input type="text" class="form-control form-control-sm"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-2"><label class="form-label">UN No</label><input type="text" class="form-control form-control-sm"></div>
+                            <div class="col-md-6 mb-2"><label class="form-label">Temperature</label><select class="form-select form-select-sm"></select></div>
+                        </div>
+                        <div class="mb-2"><label class="form-label">Shipping Name</label><input type="text" class="form-control form-control-sm"></div>
+                    </fieldset>
+                </div>
+
+                <!-- Column 2 (Middle) -->
+                <div class="col-lg-4">
+                    <div class="mb-2"><label class="form-label">Export Customs Clearance Date</label><input type="date" class="form-control form-control-sm"></div>
+                    <div class="mb-2"><label class="form-label">Import Customs Clearance Date</label><input type="date" class="form-control form-control-sm"></div>
+                    <div class="mb-2"><label class="form-label">Cargo Received Date</label><input type="date" class="form-control form-control-sm"></div>
+                    <div class="mb-2"><label class="form-label">Printing DO at Consignee</label><select class="form-select form-select-sm"><option>Yes</option><option>No</option></select></div>
+                    <div class="mb-2"><label class="form-label">QC Date</label><input type="date" class="form-control form-control-sm"></div>
+                    <div class="mb-2"><label class="form-label">BAYAN Date</label><input type="date" class="form-control form-control-sm"></div>
+                    <div class="mb-2"><label class="form-label">Cash on Delivery</label><select class="form-select form-select-sm"><option>Yes</option><option>No</option></select></div>
+                    <div class="mb-2"><label class="form-label">Cost Center Code</label><input type="text" class="form-control form-control-sm"></div>
+                    <div class="mb-2"><label class="form-label">Clearance Note</label><input type="text" class="form-control form-control-sm"></div>
+                    <div class="mb-2"><label class="form-label">Customs Cleared by Us</label><select class="form-select form-select-sm"><option>Yes</option><option>No</option></select></div>
+                    <div class="mb-2"><label class="form-label">Custom Entry No</label><input type="text" class="form-control form-control-sm"></div>
+                </div>
+
+                <!-- Column 3 (Right) -->
+                <div class="col-lg-4">
+                    <div class="mb-2"><label class="form-label">Shipper Ref No</label><input type="text" class="form-control form-control-sm"></div>
+                    <div class="mb-2"><label class="form-label">Consignee Ref No</label><input type="text" class="form-control form-control-sm"></div>
+                    <div class="mb-2"><label class="form-label">Forwarder Ref No</label><input type="text" class="form-control form-control-sm"></div>
+                    <div class="mb-2"><label class="form-label">Notify Ref No</label><input type="text" class="form-control form-control-sm"></div>
+                    <div class="mb-2"><label class="form-label">Customer Ref No</label><input type="text" class="form-control form-control-sm"></div>
+                    <div class="mb-2"><label class="form-label">BAYAN Number</label><input type="text" class="form-control form-control-sm"></div>
+                    <div class="mb-2"><label class="form-label">Invoice Note</label><select class="form-select form-select-sm"></select></div>
+
+                    <hr class="my-4">
+
+                    <div class="mb-2"><label class="form-label">Customs Cleared</label><select class="form-select form-select-sm"><option>Yes</option><option>No</option></select></div>
+                    <div class="mb-2"><label class="form-label">Custom Entry Date</label><input type="date" class="form-control form-control-sm"></div>
+                    <div class="mb-2"><label class="form-label">Division</label><input type="text" class="form-control form-control-sm"></div>
+
+                    <fieldset class="border px-3 pt-2 pb-3 mt-4">
+                        <legend class="float-none w-auto px-2 fs-6">Claim</legend>
+                        <div class="mb-2"><label class="form-label">Shortage Pieces</label><input type="text" class="form-control form-control-sm"></div>
+                        <div class="mb-2"><label class="form-label">Preliminary Note</label><textarea class="form-control form-control-sm" rows="3"></textarea></div>
+                        <div class="mb-2"><label class="form-label">Final Note</label><textarea class="form-control form-control-sm" rows="3"></textarea></div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delivery Pane -->
+          <div class="tab-pane fade p-3" id="hawb-delivery" role="tabpanel">
+            <div class="row">
+                <div class="col-md-6 mb-4"><div class="card"><div class="card-body"><h5 class="card-title">Subjob Reference</h5><div class="row"><div class="col-md-4"><label class="form-label">Segment</label><input type="text" class="form-control" /></div><div class="col-md-4"><label class="form-label">Subjob</label><input type="text" class="form-control" /></div><div class="col-md-4"><label class="form-label">HBL</label><input type="text" class="form-control" /></div></div></div></div></div>
+                <div class="col-md-6 mb-4"><div class="card"><div class="card-body"><h5 class="card-title">Local Job No</h5><div class="input-group"><input type="text" class="form-control" placeholder="Job No..." /><button class="btn btn-outline-primary" type="button">...</button></div></div></div></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><div class="card"><h5 class="card-header">Collection</h5><div class="card-body"><div class="mb-3"><label class="form-label">Our Pickup</label><select class="form-select"><option>Select...</option></select></div><div class="mb-3"><label class="form-label">Collection Point</label><input type="text" class="form-control"/></div><div class="mb-3"><label class="form-label">CFS Delivery Point</label><input type="text" class="form-control"/></div><div class="row mb-3"><div class="col-md-6"><label class="form-label">CFS Delivery Date</label><input type="date" class="form-control"/></div><div class="col-md-6"><label class="form-label">CFS Delivery Time</label><input type="time" class="form-control"/></div></div><div class="mb-3"><label class="form-label">Collect From</label><input type="text" class="form-control"/></div><div class="mb-3"><label class="form-label">Contact Person</label><input type="text" class="form-control"/></div><div class="mb-3"><label class="form-label">Pickup Place</label><textarea class="form-control" rows="2"></textarea></div><div class="row mb-3"><div class="col-md-6"><label class="form-label">Telephone No</label><input type="tel" class="form-control"/></div><div class="col-md-6"><label class="form-label">Mobile No</label><input type="tel" class="form-control"/></div></div><div class="mb-3"><label class="form-label">eMail ID</label><input type="email" class="form-control"/></div><div class="row mb-3"><div class="col-md-6"><label class="form-label">Conf. Pickup Date</label><input type="date" class="form-control"/></div><div class="col-md-6"><label class="form-label">Conf. Pickup Time</label><input type="time" class="form-control"/></div></div><div class="mb-3"><label class="form-label">Transport Note</label><input type="text" class="form-control"/></div></div></div></div>
+                <div class="col-md-6"><div class="card"><h5 class="card-header">Door Delivery</h5><div class="card-body"><div class="mb-3"><label class="form-label">Our Delivery <span class="text-danger">*</span></label><select class="form-select"><option>Select...</option></select></div><div class="mb-3"><label class="form-label">Delivery Point</label><input type="text" class="form-control"/></div><div class="mb-3"><label class="form-label">Deliver To</label><input type="text" class="form-control"/></div><div class="mb-3"><label class="form-label">Contact Person</label><input type="text" class="form-control"/></div><div class="mb-3"><label class="form-label">Delivery Place</label><textarea class="form-control" rows="2"></textarea></div><div class="row mb-3"><div class="col-md-6"><label class="form-label">Telephone No</label><input type="tel" class="form-control"/></div><div class="col-md-6"><label class="form-label">Mobile No</label><input type="tel" class="form-control"/></div></div><div class="mb-3"><label class="form-label">eMail ID</label><input type="email" class="form-control"/></div><div class="row mb-3"><div class="col-md-6"><label class="form-label">Conf. Deliv. Date</label><input type="date" class="form-control"/></div><div class="col-md-6"><label class="form-label">Conf. Deliv. Time</label><input type="time" class="form-control"/></div></div><div class="mb-3"><label class="form-label">Delivery Date</label><input type="date" class="form-control"/></div></div></div></div>
+            </div>
+            </div>
+
+<!-- CHARGE TAB PANE (Complex Table Layout)  -->
+<!-- ======================================= -->
+<div class="tab-pane fade p-3" id="hawb-charge" role="tabpanel">
+    <div class="card">
+        <div class="card-body" >
+
+            <!-- Top Row: Subjob and CAN Confirmed -->
+            <div class="row g-3 mb-3 align-items-center">
+                <div class="col-lg-9">
+                    <fieldset class="border px-3 pt-2 pb-3 h-100">
+                        <legend class="float-none w-auto px-2 fs-6">Subjob Reference</legend>
+                        <div class="row g-3 align-items-center">
+                            <label class="col-auto col-form-label col-form-label-sm">Segment</label>
+                            <div class="col-md-2"><input type="text" class="form-control form-control-sm"></div>
+                            <label class="col-auto col-form-label col-form-label-sm">Subjob</label>
+                            <div class="col-md-3"><input type="text" class="form-control form-control-sm"></div>
+                            <label class="col-auto col-form-label col-form-label-sm">HAWB</label>
+                            <div class="col"><input type="text" class="form-control form-control-sm"></div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="can-charge-confirmed">
+                        <label class="form-check-label" for="can-charge-confirmed">
+                            CAN Charge Confirmed
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charges Table -->
+            <div class="table-responsive" style="max-height: 250px; overflow-y: auto;">
+                <table class="table table-bordered table-sm">
+                    <thead class="text-center table-light" style="position: sticky; top: -1px;">
+                        <tr>
+                            <th rowspan="2" class="align-middle" style="width: 4%;">SNo</th>
+                            <th rowspan="2" class="align-middle" style="width: 7%;">Charge <span class="text-danger">*</span></th>
+                            <th rowspan="2" class="align-middle" style="width: 10%;">Name <span class="text-danger">*</span></th>
+                            <th rowspan="2" class="align-middle">Neutral/ <br> Revenue <span class="text-danger">*</span></th>
+                            <th rowspan="2" class="align-middle">PP/CC <span class="text-danger">*</span></th>
+                            <th rowspan="2" class="align-middle">Curr. <span class="text-danger">*</span></th>
+                            <th rowspan="2" class="align-middle">ROE</th>
+                            <th rowspan="2" class="align-middle">No. of <br> Unit <span class="text-danger">*</span></th>
+                            <th rowspan="2" class="align-middle">Per Unit</th>
+                            <th rowspan="2" class="align-middle">Amount <span class="text-danger">*</span></th>
+                            <th rowspan="2" class="align-middle">Local Amount</th>
+                            <th rowspan="2" class="align-middle">Note</th>
+                            <th colspan="4">
+                                <div class="d-flex flex-column align-items-center">
+                                    <span>Charges Applicable</span>
+                                    <hr class="w-100 my-1">
+                                    <div class="d-flex justify-content-around w-100">
+                                        <span>Consignee</span>
+                                        <span>Notify</span>
+                                        <span>Tax</span>
+                                        <span>Select</span>
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Repeat this row for each entry -->
+                        <tr>
+                            <td><input type="text" class="form-control form-control-sm" value="1" readonly></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><select class="form-select form-select-sm"></select></td>
+                            <td><select class="form-select form-select-sm"></select></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td class="text-center align-middle"><input class="form-check-input" type="checkbox"></td>
+                            <td class="text-center align-middle"><input class="form-check-input" type="checkbox"></td>
+                            <td class="text-center align-middle">
+                                 <div class="input-group input-group-sm">
+                                    <input class="form-check-input mt-2" type="checkbox">
+                                    <button class="btn btn-light border ms-1" type="button">...</button>
+                                </div>
+                            </td>
+                            <td class="text-center align-middle"><input class="form-check-input" type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control form-control-sm" value="2" readonly></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><select class="form-select form-select-sm"></select></td>
+                            <td><select class="form-select form-select-sm"></select></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td class="text-center align-middle"><input class="form-check-input" type="checkbox"></td>
+                            <td class="text-center align-middle"><input class="form-check-input" type="checkbox"></td>
+                             <td class="text-center align-middle">
+                                 <div class="input-group input-group-sm">
+                                    <input class="form-check-input mt-2" type="checkbox">
+                                    <button class="btn btn-light border ms-1" type="button">...</button>
+                                </div>
+                            </td>
+                            <td class="text-center align-middle"><input class="form-check-input" type="checkbox"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Middle Controls -->
+            <div class="d-flex justify-content-between align-items-center my-3">
+                <button type="button" class="btn btn-secondary btn-sm">Document</button>
+                <div class="d-flex align-items-center">
+                    <label class="form-label me-2 mb-0">Total Amount</label>
+                    <input type="text" class="form-control form-control-sm" style="width: 150px;">
+                </div>
+            </div>
+
+            <!-- Bottom Section -->
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="d-flex flex-wrap gap-2">
+                         <button type="button" class="btn btn-secondary btn-sm">History</button>
+                         <button type="button" class="btn btn-secondary btn-sm">Get Rate from Booking</button>
+                         <button type="button" class="btn btn-secondary btn-sm">Get Default Rate</button>
+                         <button type="button" class="btn btn-secondary btn-sm">Get Quotation Rates</button>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="row g-2 align-items-center mb-2">
+                        <label class="col-sm-6 col-form-label col-form-label-sm text-end">Total CAN Amt with GST</label>
+                        <div class="col-sm-6">
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control">
+                                <button class="btn btn-secondary" type="button">Total</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-2 align-items-center">
+                        <label class="col-sm-6 col-form-label col-form-label-sm text-end">Total VAT Amount</label>
+                        <div class="col-sm-6">
+                             <div class="input-group input-group-sm">
+                                <input type="text" class="form-control">
+                                <button class="btn btn-secondary" type="button">Total</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+          <!-- Note Pane -->
+<div class="tab-pane fade p-3" id="hawb-note" role="tabpanel">
+  <div class="card">
+    <div class="card-body">
+
+      <!-- Subjob Reference -->
+      <div class="row mb-4">
+        <div class="col-lg-8">
+          <fieldset class="border px-3 pt-2 pb-3 h-100">
+            <legend class="float-none w-auto px-2 fs-6">Subjob Reference</legend>
+            <div class="row g-3 align-items-center">
+              <label class="col-auto col-form-label col-form-label-sm">Segment</label>
+              <div class="col-md-2">
+                <input type="text" class="form-control form-control-sm">
+              </div>
+              <label class="col-auto col-form-label col-form-label-sm">Subjob</label>
+              <div class="col-md-3">
+                <input type="text" class="form-control form-control-sm">
+              </div>
+              <label class="col-auto col-form-label col-form-label-sm">HAWB</label>
+              <div class="col">
+                <input type="text" class="form-control form-control-sm">
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+      <!-- Notes Table -->
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle" id="notesTable">
+          <thead>
+            <tr class="table-light text-center">
+              <th style="width: 5%;">SNo <span class="text-danger">*</span></th>
+              <th style="width: 10%;">Date <span class="text-danger">*</span></th>
+              <th style="width: 10%;">Follow Up</th>
+              <th style="width: 10%;">Type</th>
+              <th style="width: 15%;">Assign To Name</th>
+              <th style="width: 15%;">Email</th>
+              <th>Note <span class="text-danger">*</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-1"><input type="text" class="form-control form-control-sm text-center" readonly value="1"/></td>
+              <td class="p-1"><input type="date" class="form-control form-control-sm"/></td>
+              <td class="p-1"><input type="date" class="form-control form-control-sm"/></td>
+              <td class="p-1"><select class="form-select form-select-sm"><option selected>Select...</option></select></td>
+              <td class="p-1"><input type="text" class="form-control form-control-sm"/></td>
+              <td class="p-1"><input type="email" class="form-control form-control-sm"/></td>
+              <td class="p-1"><input type="text" class="form-control form-control-sm"/></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Add Row Button -->
+      <div class="text-end mt-3">
+        <button class="btn btn-sm btn-outline-primary" type="button" id="addNoteRowBtn">
+          <i class="bx bx-plus"></i> Add Row
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Script for Add Row -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const addRowBtn = document.getElementById("addNoteRowBtn");
+  const notesTable = document.getElementById("notesTable").querySelector("tbody");
+
+  addRowBtn.addEventListener("click", function () {
+    const rowCount = notesTable.rows.length + 1;
+
+    // Create new row
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+      <td class="p-1"><input type="text" class="form-control form-control-sm text-center" readonly value="${rowCount}"/></td>
+      <td class="p-1"><input type="date" class="form-control form-control-sm"/></td>
+      <td class="p-1"><input type="date" class="form-control form-control-sm"/></td>
+      <td class="p-1">
+        <select class="form-select form-select-sm">
+          <option selected>Select...</option>
+        </select>
+      </td>
+      <td class="p-1"><input type="text" class="form-control form-control-sm"/></td>
+      <td class="p-1"><input type="email" class="form-control form-control-sm"/></td>
+      <td class="p-1"><input type="text" class="form-control form-control-sm"/></td>
+    `;
+
+    // Append row to table
+    notesTable.appendChild(newRow);
+  });
+});
+</script>
+
+
+
+<!-- BILL OF ENTRY TAB PANE                  -->
+
+<div class="tab-pane fade p-3" id="hawb-bill-of-entry" role="tabpanel">
+  <div class="card">
+    <div class="card-body">
+
+      <!-- Top: Subjob Reference -->
+      <fieldset class="border px-3 pt-2 pb-3 mb-4">
+        <legend class="float-none w-auto px-2 fs-6">Subjob Reference</legend>
+        <div class="row g-3 align-items-center">
+          <label for="boe-segment" class="col-auto col-form-label">Segment</label>
+          <div class="col-md-2"><input type="text" id="boe-segment" class="form-control"></div>
+          <label for="boe-subjob" class="col-auto col-form-label">Subjob</label>
+          <div class="col-md-3"><input type="text" id="boe-subjob" class="form-control"></div>
+          <label for="boe-hawb" class="col-auto col-form-label">HAWB</label>
+          <div class="col"><input type="text" id="boe-hawb" class="form-control"></div>
+        </div>
+      </fieldset>
+
+      <!-- Bill of Entry Table -->
+      <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+        <table class="table table-bordered table-sm" id="boeTable">
+          <thead class="text-center table-light" style="position: sticky; top: -1px; z-index: 1;">
+            <!-- Top-level Headers -->
+            <tr>
+              <th rowspan="2" class="align-middle">SNo <span class="text-danger">*</span></th>
+              <th rowspan="2" class="align-middle">Declaration No</th>
+              <th rowspan="2" class="align-middle">BOE No</th>
+              <th rowspan="2" class="align-middle">BOE Date</th>
+              <th rowspan="2" class="align-middle">BOE Value</th>
+              <th rowspan="2" class="align-middle">Invoice No</th>
+              <th colspan="2">BOE Transaction</th>
+              <th colspan="2">Duty Exemption</th>
+              <th colspan="2">Exit/Entry Document</th>
+              <th colspan="2">Claim</th>
+            </tr>
+
+            <tr>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Number</th>
+              <th>Value</th>
+              <th>Process Date</th>
+              <th>Recvd.Date</th>
+              <th>Ack. No.</th>
+              <th>Ack.Date</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <td><input type="text" class="form-control text-center" readonly value="1"></td>
+              <td><input type="text" class="form-control"></td>
+              <td><input type="text" class="form-control"></td>
+              <td><input type="date" class="form-control"></td>
+              <td><input type="text" class="form-control"></td>
+              <td><input type="text" class="form-control"></td>
+              <td><select class="form-select"></select></td>
+              <td><input type="text" class="form-control"></td>
+              <td><input type="text" class="form-control"></td>
+              <td><input type="text" class="form-control"></td>
+              <td><input type="date" class="form-control"></td>
+              <td><input type="date" class="form-control"></td>
+              <td><input type="text" class="form-control"></td>
+              <td><input type="date" class="form-control"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      <div class="text-end mt-3">
+        <button class="btn btn-sm btn-outline-primary" type="button" id="addBoeRowBtn">
+          <i class="bx bx-plus"></i> Add Row
+        </button>
+      </div>
+
+
+      <div class="row mt-3">
+        <div class="col-md-8 offset-md-4">
+          <div class="row">
+            <label for="boe-note" class="col-auto col-form-label">Note</label>
+            <div class="col">
+              <textarea id="boe-note" class="form-control" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const addBoeRowBtn = document.getElementById("addBoeRowBtn");
+  const boeTableBody = document.getElementById("boeTable").querySelector("tbody");
+
+  addBoeRowBtn.addEventListener("click", function () {
+    const rowCount = boeTableBody.rows.length + 1;
+
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+      <td><input type="text" class="form-control text-center" readonly value="${rowCount}"></td>
+      <td><input type="text" class="form-control"></td>
+      <td><input type="text" class="form-control"></td>
+      <td><input type="date" class="form-control"></td>
+      <td><input type="text" class="form-control"></td>
+      <td><input type="text" class="form-control"></td>
+      <td><select class="form-select"></select></td>
+      <td><input type="text" class="form-control"></td>
+      <td><input type="text" class="form-control"></td>
+      <td><input type="text" class="form-control"></td>
+      <td><input type="date" class="form-control"></td>
+      <td><input type="date" class="form-control"></td>
+      <td><input type="text" class="form-control"></td>
+      <td><input type="date" class="form-control"></td>
+    `;
+
+    boeTableBody.appendChild(newRow);
+  });
+});
+</script>
+
+
+<!-- COLLECTION TAB PANE                     -->
+
+<div class="tab-pane fade p-3" id="hawb-collection" role="tabpanel">
+    <div class="card">
+        <div class="card-body" >
+            <div class="row p-5">
+
+
+                <div class="col-md-6">
+                    <div class="row align-items-center mb-4">
+                        <label for="collection-vehicle-no" class="col-md-4 col-form-label text-md-end">Vehicle No</label>
+                        <div class="col-md-8">
+                            <input type="text" id="collection-vehicle-no" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row align-items-center mb-4">
+                        <label for="collection-driver" class="col-md-4 col-form-label text-md-end">Driver</label>
+                        <div class="col-md-8">
+                            <input type="text" id="collection-driver" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row align-items-center mb-4">
+                        <label for="collection-mobile" class="col-md-4 col-form-label text-md-end">Mobile</label>
+                        <div class="col-md-8">
+                            <input type="tel" id="collection-mobile" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="row align-items-center mb-4">
+                        <label for="collection-date" class="col-md-4 col-form-label text-md-end">
+                            <span class="text-danger">*</span> Collection Date
+                        </label>
+                        <div class="col-md-8">
+                            <input type="date" id="collection-date" class="form-control">
+                        </div>
+                    </div>
+                     <div class="row align-items-center mb-4">
+                        <label for="collection-consignment-note" class="col-md-4 col-form-label text-md-end">
+                            <span class="text-danger">*</span> Consignment Note No
+                        </label>
+                        <div class="col-md-8">
+                            <input type="text" id="collection-consignment-note" class="form-control">
+                        </div>
+                    </div>
+                     <div class="row align-items-center mb-4">
+                        <label for="collection-trip-no" class="col-md-4 col-form-label text-md-end">Trip No</label>
+                        <div class="col-md-8">
+                            <input type="text" id="collection-trip-no" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+         <!-- Links Pane -->
+<div class="tab-pane fade p-3" id="hawb-links" role="tabpanel">
+  <div class="row">
+
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-3 d-grid gap-2">
+          <button class="btn btn-outline-secondary" type="button">Create Invoice</button>
+          <button class="btn btn-outline-secondary" type="button">Create Credit Note (Rev)</button>
+          <button class="btn btn-outline-secondary" type="button">Create Credit Note (Cost)</button>
+          <button class="btn btn-outline-secondary" type="button">Invoice/Credit Note List</button>
+          <button class="btn btn-outline-secondary" type="button">Document</button>
+          <button class="btn btn-outline-secondary" type="button">Commodity Details</button>
+        </div>
+        <div class="col-md-3 d-grid gap-2">
+          <button class="btn btn-outline-secondary" type="button">Job Ledger</button>
+          <button class="btn btn-outline-secondary" type="button">Provisional Cost</button>
+          <button class="btn btn-outline-secondary" type="button">CR Journal</button>
+          <button class="btn btn-outline-secondary" type="button">Receipt</button>
+          <button class="btn btn-outline-secondary" type="button">CFS Delivery</button>
+          <button class="btn btn-outline-secondary" type="button">Bill of Entry</button>
+        </div>
+        <div class="col-md-3 d-grid gap-2">
+          <button class="btn btn-outline-secondary" type="button">Payment Request</button>
+          <button class="btn btn-outline-secondary" type="button">Payment Voucher</button>
+          <button class="btn btn-danger" type="button">Subjob Close</button>
+          <button class="btn btn-outline-secondary" type="button">Subjob Comment History</button>
+          <button class="btn btn-outline-secondary" type="button">Job Signoff</button>
+          <button class="btn btn-outline-secondary" type="button">Customs Document</button>
+        </div>
+        <div class="col-md-3 d-grid gap-2">
+          <button class="btn btn-outline-secondary" type="button">Issued documents</button>
+          <button class="btn btn-outline-secondary" type="button">Cost Invoice Voucher</button>
+
+          <button class="btn btn-outline-secondary" type="button">Document Management Details</button>
+          <button class="btn btn-outline-secondary" type="button">Project/Exhibition Details</button>
+          <button class="btn btn-outline-secondary" type="button">Debit/Credit Note for Trade</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-3">
+
+      <fieldset class="border p-2 mb-3">
+        <legend class="float-none w-auto px-2 fs-6">Subjob Reference</legend>
+        <div class="input-group mb-2">
+          <input type="text" class="form-control" placeholder="Segment" />
+          <input type="text" class="form-control" placeholder="Subjob" />
+          <input type="text" class="form-control" placeholder="HAWB" />
+        </div>
+      </fieldset>
+
+
+      <fieldset class="border p-2 mb-3">
+        <legend class="float-none w-auto px-2 fs-6">Clearance Job Details</legend>
+        <div class="input-group">
+          <input type="text" class="form-control" />
+          <input type="text" class="form-control" />
+          <button class="btn btn-outline-primary" type="button">...</button>
+        </div>
+      </fieldset>
+
+
+      <fieldset class="border p-2 mb-3">
+        <legend class="float-none w-auto px-2 fs-6">Export Job Details</legend>
+        <div class="mb-2">
+          <label class="form-label">Export Job</label>
+          <div class="input-group">
+            <input type="text" class="form-control" />
+            <input type="text" class="form-control" />
+            <button class="btn btn-outline-primary" type="button">...</button>
+          </div>
+        </div>
+        <div class="mb-2">
+          <label class="form-label">Service Job</label>
+          <div class="input-group">
+            <input type="text" class="form-control" />
+            <input type="text" class="form-control" />
+            <button class="btn btn-outline-primary" type="button">...</button>
+          </div>
+        </div>
+      </fieldset>
+
+
+      <div class="mb-3">
+        <label for="subjob-comment" class="form-label">Subjob Comment</label>
+        <input class="form-control" type="text" id="subjob-comment">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- EVENT / REFERENCE TAB PANE (With Add Row) -->
+
+<div class="tab-pane fade p-3" id="hawb-event" role="tabpanel">
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Subjob Reference</h5>
+            <div class="row align-items-end">
+                <div class="col-md-auto">
+                    <label for="event-segment" class="form-label">Segment</label>
+                    <input class="form-control" type="text" id="event-segment" />
+                </div>
+                <div class="col-md-auto">
+                    <label for="event-subjob" class="form-label">Subjob</label>
+                    <input class="form-control" type="text" id="event-subjob" />
+                </div>
+                <div class="col-md-5">
+                    <label for="event-hawb" class="form-label">HAWB</label>
+                    <input class="form-control" type="text" id="event-hawb" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Events Section -->
+        <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Events</h5>
+                    <div class="table-responsive mb-3">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="align-middle" style="width: 10%;">SNo</th>
+                                    <th class="align-middle">Code <span class="text-danger">*</span></th>
+                                    <th class="align-middle">Date <span class="text-danger">*</span></th>
+                                    <th class="align-middle">Time</th>
+                                    <th class="align-middle">Note</th>
+                                </tr>
+                            </thead>
+                            <tbody id="eventsTableBody">
+
+                                <tr>
+                                    <td class="p-2 align-middle">
+                                        <input type="text" class="form-control" value="1" readonly>
+                                    </td>
+                                    <td class="p-2 align-middle">
+                                        <input type="text" class="form-control">
+                                    </td>
+                                    <td class="p-2 align-middle">
+                                        <input type="date" class="form-control">
+                                    </td>
+                                    <td class="p-2 align-middle">
+                                        <input type="text" class="form-control">
+                                    </td>
+                                    <td class="p-2 align-middle">
+                                        <input type="text" class="form-control">
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-end mb-3">
+                        <button type="button" class="btn btn-sm btn-outline-primary" id="addEventRowBtn">
+                            <i class="bx bx-plus me-1"></i>Add Row
+                        </button>
+                    </div>
+                    <div class="mt-auto">
+                        <input type="text" class="form-control" placeholder="Event Name">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">References</h5>
+                    <div class="table-responsive mb-3">
+                                                <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="align-middle" style="width: 10%;">SNo</th>
+                                    <th class="align-middle">Code <span class="text-danger">*</span></th>
+                                    <th class="align-middle">Number <span class="text-danger">*</span></th>
+                                    <th class="align-middle">Note</th>
+                                </tr>
+                            </thead>
+                            <tbody id="referencesTableBody">
+
+                                <tr>
+                                    <td class="p-2 align-middle">
+                                        <input type="text" class="form-control" value="1" readonly>
+                                    </td>
+                                    <td class="p-2 align-middle">
+                                        <input type="text" class="form-control">
+                                    </td>
+                                    <td class="p-2 align-middle">
+                                        <input type="text" class="form-control">
+                                    </td>
+                                    <td class="p-2 align-middle">
+                                        <input type="text" class="form-control">
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-end mb-3">
+                        <button type="button" class="btn btn-sm btn-outline-primary" id="addReferenceRowBtn">
+                            <i class="bx bx-plus me-1"></i>Add Row
+                        </button>
+                    </div>
+                    <div class="mt-auto">
+                        <input type="text" class="form-control" placeholder="Reference Name">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Customs Pane -->
+<div class="tab-pane fade p-3" id="hawb-customs" role="tabpanel">
+  <div class="card">
+    <div class="card-body">
+
+
+      <div class="card bg-light p-3 mb-4">
+        <h5 class="card-title mb-3">Subjob Reference</h5>
+        <div class="row mb-3">
+          <label class="col-md-2 col-form-label">Segment</label>
+          <div class="col-md-2">
+            <input type="text" class="form-control" />
+          </div>
+          <label class="col-md-2 col-form-label">Subjob</label>
+          <div class="col-md-3">
+            <input type="text" class="form-control" />
+          </div>
+          <label class="col-md-1 col-form-label">HAWB</label>
+          <div class="col-md-2">
+            <input type="text" class="form-control" />
+          </div>
+        </div>
+      </div>
+
+
+      <div class="mb-4">
+        <h6>Customs Shipper</h6>
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-control" />
+        </div>
+        <div>
+          <label class="form-label">Address</label>
+          <textarea class="form-control" rows="2"></textarea>
+        </div>
+      </div>
+
+
+      <div class="mb-4">
+        <h6>Customs Consignee</h6>
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-control" />
+        </div>
+        <div>
+          <label class="form-label">Address</label>
+          <textarea class="form-control" rows="2"></textarea>
+        </div>
+      </div>
+
+
+      <div>
+        <h6>Customs First Notify</h6>
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-control" />
+        </div>
+        <div>
+          <label class="form-label">Address</label>
+          <textarea class="form-control" rows="2"></textarea>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- Action Buttons -->
+<div class="row mt-4">
+    <div class="col-12 text-center">
+        <button type="submit" class="btn btn-primary me-2">Save Job</button>
+        <button type="reset" class="btn btn-label-secondary">Cancel</button>
+    </div>
+</div>
+

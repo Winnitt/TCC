@@ -1,0 +1,178 @@
+@page
+@model AspnetCoreFull.Pages.Dashboards.AnalyticsModel
+@{
+    ViewData["Title"] = "Task Manager Dashboard";
+}
+
+<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+
+
+    <!-- Card: Booking Entered But Rate Not Entered -->
+<div class="col">
+    <div class="card h-100">
+        <div class="card-body">
+            <h5 class="card-title mb-0">Bookings Entered But Rate Not Entered</h5>
+
+
+
+            @* This makes the entire card a link to the new page *@
+            <a asp-page="../Tasks/BookingEnteredButRateNotEntered" class="stretched-link"></a>
+        </div>
+    </div>
+</div>
+
+    <!-- Card: Booking Followup -->
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                 <h5 class="card-title">Booking Followup</h5>
+
+                 <a href="#" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card: Personwise Pending Bookings -->
+    <!-- Card: Booking Personwise Pending Bookings -->
+<div class="col">
+    <div class="card h-100">
+        <div class="card-body">
+            <h5 class="card-title">Booking Personwise Pending Bookings</h5>
+            @* There should only be ONE link inside the card *@
+            <a asp-page="../Tasks/BookingPersonwisePendingBookings" class="stretched-link"></a>
+        </div>
+    </div>
+</div>
+
+    <!-- Card: Job Not Opened -->
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                 <h5 class="card-title">Job Not Opened</h5>
+
+                 <a asp-page="../Tasks/JobNotOpened" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADD ALL OTHER CARDS HERE IN THE SAME FORMAT... -->
+
+    <!-- Card: Pending Quotation -->
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                 <h5 class="card-title">POD Connection Not Updated</h5>
+
+                 <a href="#" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                 <h5 class="card-title">ATD Not Updated</h5>
+
+                 <a href="#" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                 <h5 class="card-title">BL Not Released</h5>
+
+                 <a href="#" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                 <h5 class="card-title">CAN Sent DO Not Collected</h5>
+
+                 <a href="#" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                 <h5 class="card-title">CFS Pending Sea Air Cargo</h5>
+
+                 <a href="#" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                 <h5 class="card-title">Document Not Attached</h5>
+
+                 <a href="#" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                 <h5 class="card-title">ETA Confirmed CAN Not Yet Send</h5>
+
+                 <a href="#" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                 <h5 class="card-title">Import Collect Charge Not Updated</h5>
+
+                 <a href="#" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                 <h5 class="card-title">Import Container Tracking</h5>
+
+                 <a href="#" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                 <h5 class="card-title">Invoice Not Raised</h5>
+
+                 <a href="#" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                 <h5 class="card-title">Sea Export Job LPO & PRQ Checklist </h5>
+
+                 <a href="#" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                 <h5 class="card-title">Transhipment Cargo Overstay Report</h5>
+
+                 <a href="#" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                 <h5 class="card-title">Pending Quotation</h5>
+
+                 <a href="#" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+</div>

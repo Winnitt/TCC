@@ -1,0 +1,1022 @@
+@page
+@model AspnetCoreFull.Pages.eAir.AirImportClearanceJobModel
+@{
+    ViewData["Title"] = "Air Import Clearance Job";
+}
+
+<h4 class="fw-bold py-3 mb-4">
+  <span class="text-muted fw-light">eAir /</span> @ViewData["Title"]
+</h4>
+
+<!-- Main Accordion Container -->
+<div class="accordion" id="airJobAccordion">
+
+  <!-- ACCORDION PANEL 1: MAWB -->
+  <div class="accordion-item active">
+     <h2 class="accordion-header" id="headingMawb">
+      @* CHANGE 1: Added the "collapsed" class to the button *@
+      <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseMawb" aria-expanded="false" aria-controls="collapseMawb">
+        <i class="bx bxs-file-blank me-2"></i>
+        MAWB Details
+      </button>
+    </h2>
+
+    <div id="collapseMawb" class="accordion-collapse collapse" aria-labelledby="headingMawb" data-bs-parent="#airJobAccordion">
+      <div class="accordion-body">
+        <!-- MAWB Sub-Tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item"><button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#mawb-info" aria-controls="mawb-info" aria-selected="true">MAWB</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#mawb-note" aria-controls="mawb-note" aria-selected="false">Note</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#mawb-links" aria-controls="mawb-links" aria-selected="false">Links</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#mawb-event" aria-controls="mawb-event" aria-selected="false">Event / Reference</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#mawb-linkjob" aria-controls="mawb-linkjob" aria-selected="false">Link Job</button></li>
+        </ul>
+        <div class="tab-content">
+          <!-- MAWB Info Pane -->
+          <div class="tab-pane fade show active p-3" id="mawb-info" role="tabpanel">
+             <div class="row">
+              <div class="col-md-7">
+                <div class="row">
+                  <div class="col-md-6 mb-3"><label class="form-label">Job <span class="text-danger">*</span></label><input type="text" class="form-control" /></div>
+                  <div class="col-md-6 mb-3"><label class="form-label">MAWB</label><input type="text" class="form-control" /></div>
+                </div>
+                <div class="mb-3"><label class="form-label">Agent</label><input type="text" class="form-control" /></div>
+                <div class="mb-3"><label class="form-label">Address</label><textarea class="form-control" rows="2"></textarea></div>
+                <div class="row">
+                  <div class="col-md-3 mb-3"><label class="form-label">Pieces <span class="text-danger">*</span></label><input type="number" class="form-control" /></div>
+                  <div class="col-md-3 mb-3"><label class="form-label">Weight <span class="text-danger">*</span></label><input type="number" class="form-control" /></div>
+                  <div class="col-md-3 mb-3"><label class="form-label">Volume</label><input type="number" class="form-control" /></div>
+                  <div class="col-md-3 mb-3"><label class="form-label">Chargeable Wt. <span class="text-danger">*</span></label><input type="number" class="form-control" /></div>
+                </div>
+                <div class="mb-3"><label class="form-label">Note</label><textarea class="form-control" id="mawb-note-main" rows="3"></textarea></div>
+              </div>
+              <div class="col-md-5">
+                <div class="row">
+                  <div class="col-md-4 mb-3"><label class="form-label">Freight <span class="text-danger">*</span></label><select class="form-select"><option>Select...</option></select></div>
+                  <div class="col-md-4 mb-3"><label class="form-label">Job Completed</label><select class="form-select"><option>No</option></select></div>
+                  <div class="col-md-4 mb-3"><label class="form-label">Status <span class="text-danger">*</span></label><select class="form-select"><option>Select...</option></select></div>
+                </div>
+                <div class="card p-3 bg-light">
+                  <div class="mb-3"><label class="form-label">Carrier <span class="text-danger">*</span></label><input type="text" class="form-control" /></div>
+                  <div class="mb-3"><label class="form-label">Flight No <span class="text-danger">*</span></label><input type="text" class="form-control" /></div>
+                  <div class="row">
+                    <div class="col-md-6 mb-3"><label class="form-label">POR</label><input type="text" class="form-control" /></div>
+                    <div class="col-md-6 mb-3"><label class="form-label">POL <span class="text-danger">*</span></label><input type="text" class="form-control" /></div>
+                    <div class="col-md-6 mb-3"><label class="form-label">POD <span class="text-danger">*</span></label><input type="text" class="form-control" /></div>
+                    <div class="col-md-6 mb-3"><label class="form-label">FDC</label><input type="text" class="form-control" /></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 mb-3"><label class="form-label">ETD</label><input type="date" class="form-control" /></div>
+                    <div class="col-md-6 mb-3"><label class="form-label">ATD</label><input type="date" class="form-control" /></div>
+                    <div class="col-md-6 mb-3"><label class="form-label">ETA <span class="text-danger">*</span></label><input type="date" class="form-control" /></div>
+                    <div class="col-md-6 mb-3"><label class="form-label">ATA</label><input type="date" class="form-control" /></div>
+                  </div>
+                   <div class="mb-3"><label class="form-label">Clearance Location</label><input type="text" class="form-control" /></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+         <!-- Note Pane -->
+<div class="tab-pane fade p-3" id="mawb-note" role="tabpanel">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="table-light">
+                    <th style="width: 5%;">SNo <span class="text-danger">*</span></th>
+                    <th style="width: 10%;">Date <span class="text-danger">*</span></th>
+                    <th style="width: 10%;">Follow Up</th>
+                    <th style="width: 10%;">Type</th>
+                    <th style="width: 15%;">Assign To Name</th>
+                    <th style="width: 15%;">Email</th>
+                    <th>Note <span class="text-danger">*</span></th>
+                </tr>
+            </thead>
+
+            <tbody id="mawbNoteTableBody">
+                <tr>
+                    <td class="p-1"><input type="text" class="form-control form-control-sm" value="1" readonly /></td>
+                    <td class="p-1"><input type="date" class="form-control form-control-sm" /></td>
+                    <td class="p-1"><input type="date" class="form-control form-control-sm" /></td>
+                    <td class="p-1"><select class="form-select form-select-sm"><option selected>Agent</option><option>Employee</option></select></td>
+                    <td class="p-1"><input type="text" class="form-control form-control-sm" /></td>
+                    <td class="p-1"><input type="email" class="form-control form-control-sm" /></td>
+                    <td class="p-1"><input type="text" class="form-control form-control-sm" /></td>
+                </tr>
+                <tr>
+                    <td class="p-1"><input type="text" class="form-control form-control-sm" value="2" readonly /></td>
+                    <td class="p-1"><input type="date" class="form-control form-control-sm" /></td>
+                    <td class="p-1"><input type="date" class="form-control form-control-sm" /></td>
+                    <td class="p-1"><select class="form-select form-select-sm"><option selected>Select...</option></select></td>
+                    <td class="p-1"><input type="text" class="form-control form-control-sm" /></td>
+                    <td class="p-1"><input type="email" class="form-control form-control-sm" /></td>
+                    <td class="p-1"><input type="text" class="form-control form-control-sm" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-end mt-3">
+
+        <button type="button" class="btn btn-sm btn-outline-primary" id="addMawbNoteRowBtn">Add Row</button>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    // --- Add this new block for the MAWB Note Table ---
+    const addMawbNoteBtn = document.getElementById('addMawbNoteRowBtn');
+    if (addMawbNoteBtn) { // Check if the button exists
+        const mawbNoteTableBody = document.getElementById('mawbNoteTableBody');
+
+        addMawbNoteBtn.addEventListener('click', function () {
+            const rowCount = mawbNoteTableBody.rows.length;
+            const newRow = mawbNoteTableBody.insertRow(rowCount);
+
+            newRow.innerHTML = `
+                <td class="p-1"><input type="text" class="form-control form-control-sm" value="${rowCount + 1}" readonly/></td>
+                <td class="p-1"><input type="date" class="form-control form-control-sm"/></td>
+                <td class="p-1"><input type="date" class="form-control form-control-sm"/></td>
+                <td class="p-1"><select class="form-select form-select-sm"><option selected>Select...</option></select></td>
+                <td class="p-1"><input type="text" class="form-control form-control-sm"/></td>
+                <td class="p-1"><input type="email" class="form-control form-control-sm"/></td>
+                <td class="p-1"><input type="text" class="form-control form-control-sm"/></td>
+            `;
+        });
+    }
+
+
+
+});
+</script>
+
+          <!-- Links Pane -->
+          <div class="tab-pane fade p-3" id="mawb-links" role="tabpanel">
+            <div class="row"><div class="col-md-8"><div class="mb-3 row"><label for="job-comment" class="col-md-2 col-form-label">Job Comment</label><div class="col-md-10"><input class="form-control" type="text" id="job-comment"></div></div><hr><div class="row"><div class="col-md-3 d-grid gap-2"><button class="btn btn-outline-secondary" type="button">Create Invoice</button><button class="btn btn-outline-secondary" type="button">Create Credit Note (Rev)</button><button class="btn btn-outline-secondary" type="button">Create Credit Note (Cost)</button><button class="btn btn-outline-secondary" type="button">Invoice/Credit Note List</button><button class="btn btn-outline-secondary" type="button">Cost Invoice Voucher</button></div><div class="col-md-3 d-grid gap-2"><button class="btn btn-outline-secondary" type="button">Provisional Cost</button><button class="btn btn-outline-secondary" type="button">Local Purchase Order</button><button class="btn btn-outline-secondary" type="button">Payment Request</button><button class="btn btn-outline-secondary" type="button">Payment Voucher</button></div><div class="col-md-3 d-grid gap-2"><button class="btn btn-outline-secondary" type="button">Creditors Journal</button><button class="btn btn-outline-secondary" type="button">Job Ledger</button><button class="btn btn-outline-secondary" type="button">Attach Document</button><button class="btn btn-outline-secondary" type="button">Issued Documents</button></div><div class="col-md-3 d-grid gap-2"><button class="btn btn-danger" type="button">Job Close</button><button class="btn btn-outline-secondary" type="button">Job Comment History</button><button class="btn btn-outline-secondary" type="button">Job Signoff</button></div></div></div><div class="col-md-4"><div class="card mb-4"><div class="card-body"><div class="mb-3 row"><label for="create-user" class="col-md-4 col-form-label">Create User</label><div class="col-md-8"><input class="form-control" type="text" id="create-user" readonly></div></div><div class="mb-3 row"><label for="run-user" class="col-md-4 col-form-label">Run User</label><div class="col-md-8"><input class="form-control" type="text" id="run-user" readonly></div></div></div></div><div class="card"><h5 class="card-header" style="padding: 0.75rem 1.25rem;">Get Import Job Details</h5><div class="card-body"><div class="mb-3"><label class="form-label">Job</label><input class="form-control" type="text" placeholder="Enter Job No..."></div><div class="d-grid"><button class="btn btn-primary" type="button">Get Details</button></div></div></div></div></div>
+          </div>
+
+          <!-- =================================================== -->
+<!-- EVENT / REFERENCE TAB PANE  -->
+<!-- =================================================== -->
+<div class="tab-pane fade p-3" id="mawb-event" role="tabpanel">
+    <div class="card mb-4">
+        <div class="card-body py-3 px-4">
+            <div class="row align-items-center">
+                <div class="col-md-auto me-4">
+                    <h5 class="card-title mb-0">Job Reference</h5>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Segment</label>
+                    <input type="text" readonly class="form-control" value="AIE" />
+                </div>
+                 <div class="col-md-4">
+                    <label class="form-label">Job</label>
+                    <input type="text" class="form-control" placeholder="Job Number..." />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Events Column -->
+        <div class="col-md-6">
+            <div class="card">
+                <h5 class="card-header">Events</h5>
+                <div class="card-body p-3">
+                     <div class="table-responsive">
+                         <table class="table table-bordered">
+                             <thead><tr class="table-light"><th style="width: 10%;">SNo</th><th style="width: 20%;">Code <span class="text-danger">*</span></th><th style="width: 20%;">Date <span class="text-danger">*</span></th><th style="width: 15%;">Time</th><th>Note</th></tr></thead>
+                             <tbody>
+                                 <tr><td class="p-1"><input type="text" class="form-control form-control-sm" readonly/></td><td class="p-1"><input type="text" class="form-control form-control-sm"/></td><td class="p-1"><input type="date" class="form-control form-control-sm"/></td><td class="p-1"><input type="time" class="form-control form-control-sm"/></td><td class="p-1"><input type="text" class="form-control form-control-sm"/></td></tr>
+                                 <tr><td class="p-1"><input type="text" class="form-control form-control-sm" readonly/></td><td class="p-1"><input type="text" class="form-control form-control-sm"/></td><td class="p-1"><input type="date" class="form-control form-control-sm"/></td><td class="p-1"><input type="time" class="form-control form-control-sm"/></td><td class="p-1"><input type="text" class="form-control form-control-sm"/></td></tr>
+                             </tbody>
+                         </table>
+                    </div>
+                    <hr class="my-3">
+                    <div class="row align-items-center">
+                         <div class="col-md-8">
+                             <label class="form-label">Event Name</label>
+                             <input type="text" readonly class="form-control"/>
+                         </div>
+                         <div class="col-md-4 text-end">
+                            <button class="btn btn-sm btn-outline-primary" type="button">Add Row</button>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- References Column -->
+        <div class="col-md-6">
+             <div class="card">
+                <h5 class="card-header">References</h5>
+                <div class="card-body p-3">
+                    <div class="table-responsive">
+                         <table class="table table-bordered">
+                             <thead><tr class="table-light"><th style="width: 10%;">SNo</th><th style="width: 20%;">Code <span class="text-danger">*</span></th><th style="width: 30%;">Number <span class="text-danger">*</span></th><th>Note</th></tr></thead>
+                             <tbody>
+                                  <tr><td class="p-1"><input type="text" class="form-control form-control-sm" readonly/></td><td class="p-1"><input type="text" class="form-control form-control-sm"/></td><td class="p-1"><input type="text" class="form-control form-control-sm"/></td><td class="p-1"><input type="text" class="form-control form-control-sm"/></td></tr>
+                                  <tr><td class="p-1"><input type="text" class="form-control form-control-sm" readonly/></td><td class="p-1"><input type="text" class="form-control form-control-sm"/></td><td class="p-1"><input type="text" class="form-control form-control-sm"/></td><td class="p-1"><input type="text" class="form-control form-control-sm"/></td></tr>
+                             </tbody>
+                         </table>
+                    </div>
+                    <hr class="my-3">
+                     <div class="row align-items-center">
+                         <div class="col-md-8">
+                             <label class="form-label">Reference Name</label>
+                             <input type="text" readonly class="form-control"/>
+                         </div>
+                         <div class="col-md-4 text-end">
+                             <button class="btn btn-sm btn-outline-primary" type="button">Add Row</button>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================ -->
+          <!-- LINK JOB TAB PANE  -->
+          <!-- ============================ -->
+          <div class="tab-pane fade p-3" id="mawb-linkjob" role="tabpanel">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Link Another Job</h5>
+                            <p class="card-subtitle mb-3">Enter the full job number to link it to the current MAWB.</p>
+
+                            <div class="mb-3">
+                                <label for="link-job-input" class="form-label">Job Number</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">Segment</span>
+                                    <input type="text" class="form-control" placeholder="e.g., AIE" aria-label="Segment">
+                                    <input type="text" class="form-control" placeholder="Job Number" aria-label="Job Number">
+                                    <input type="text" class="form-control" placeholder="Year" aria-label="Year">
+                                </div>
+                                <div id="link-job-help" class="form-text">
+                                  Please provide the Segment, Job Number, and Year.
+                                </div>
+                            </div>
+
+                            <div class="mt-4 text-end">
+                                 <button type="button" class="btn btn-primary">Link Job</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Action Buttons -->
+<div class="row mt-4">
+    <div class="col-12 text-center">
+        <button type="submit" class="btn btn-primary me-2">Save Job</button>
+        <button type="reset" class="btn btn-label-secondary">Cancel</button>
+    </div>
+</div>
+    </div>
+  </div>
+
+
+  <!-- HAWB SECTION  -->
+
+
+  <div class="accordion-item active">
+    <h2 class="accordion-header" id="headingHawb">
+      <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseHawb" aria-expanded="true" aria-controls="collapseHawb">
+        <i class="bx bxs-file me-2"></i>
+        HAWB Details
+      </button>
+    </h2>
+    <div id="collapseHawb" class="accordion-collapse collapse show" aria-labelledby="headingHawb" data-bs-parent="#airJobAccordion">
+      <div class="accordion-body">
+        <!-- HAWB Sub-Tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item"><button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-info" aria-controls="hawb-info" aria-selected="true">HAWB</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-charges" aria-controls="hawb-charges" aria-selected="false">Charges</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-note" aria-controls="hawb-note" aria-selected="false">Note</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-links" aria-controls="hawb-links" aria-selected="false">Links</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-others" aria-controls="hawb-others" aria-selected="false">Others</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-delivery" aria-controls="hawb-delivery" aria-selected="false">Delivery</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-municipality" aria-controls="hawb-municipality" aria-selected="false">Municipality</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-event" aria-controls="hawb-event" aria-selected="false">Event / Reference</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-import-charge" aria-controls="hawb-import-charge" aria-selected="false">Import Job Charge</button></li>
+          <li class="nav-item"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#hawb-transport" aria-controls="hawb-transport" aria-selected="false">Transport</button></li>
+
+
+
+        </ul>
+        <div class="tab-content">
+          <!-- HAWB Info Pane -->
+          <div class="tab-pane fade show active p-3" id="hawb-info" role="tabpanel">
+            <div class="row">
+                <!-- Left Column: HAWB Parties -->
+                <div class="col-md-7">
+                    <div class="card">
+                        <div class="card-body">
+                             <div class="row">
+                                <div class="col-md-6 mb-3"><label class="form-label">Subjob <span class="text-danger">*</span></label><input type="text" class="form-control"/></div>
+                                <div class="col-md-6 mb-3"><label class="form-label">HAWB <span class="text-danger">*</span></label><input type="text" class="form-control"/></div>
+                            </div>
+                            <div class="mb-3"><label class="form-label">Shipper</label><div class="input-group"><input type="text" class="form-control"/><button class="btn btn-outline-primary" type="button"><i class="bx bx-search"></i></button></div></div>
+                             <div class="mb-3"><label class="form-label">Address</label><textarea class="form-control" rows="2"></textarea></div>
+                             <div class="mb-3"><label class="form-label">Consignee <span class="text-danger">*</span></label><div class="input-group"><input type="text" class="form-control"/><button class="btn btn-outline-primary" type="button"><i class="bx bx-search"></i></button></div></div>
+                             <div class="mb-3"><label class="form-label">Address</label><textarea class="form-control" rows="2"></textarea></div>
+                            <div class="mb-3"><label class="form-label">Notify</label><div class="input-group"><input type="text" class="form-control"/><button class="btn btn-outline-primary" type="button"><i class="bx bx-search"></i></button></div></div>
+                             <div class="mb-3"><label class="form-label">Address</label><textarea class="form-control" rows="2"></textarea></div>
+                            <hr class="my-4">
+                            <div class="row">
+                                <div class="col-md-3 mb-3"><label class="form-label">TOS</label><input type="text" class="form-control"/></div>
+                                <div class="col-md-3 mb-3"><label class="form-label">Extl.Pack</label><input type="text" class="form-control"/></div>
+                                <div class="col-md-3 mb-3"><label class="form-label">Routed <span class="text-danger">*</span></label><select class="form-select"><option>Select...</option></select></div>
+                                <div class="col-md-3 mb-3"><label class="form-label">Routed by <span class="text-danger">*</span></label><input type="text" class="form-control"/></div>
+                            </div>
+                            <div class="mb-3"><label class="form-label">Commodity</label><input type="text" class="form-control"/></div>
+                            <div class="mb-3"><label class="form-label">Mark No</label><textarea class="form-control" rows="3"></textarea></div>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Right Column: HAWB Status -->
+                <div class="col-md-5">
+                    <div class="card">
+                         <div class="card-body">
+                            <div class="mb-3"><label class="form-label">Status</label><select class="form-select"><option>Select...</option></select></div>
+                            <div class="mb-3"><label class="form-label">Nomination No</label><input type="text" class="form-control"/></div>
+                            <div class="mb-3"><label class="form-label">Billing Customer</label><div class="input-group"><input type="text" class="form-control"/><button class="btn btn-outline-primary" type="button"><i class="bx bx-search"></i></button></div></div>
+                            <div class="mb-3"><label class="form-label">Address</label><textarea class="form-control" rows="2"></textarea></div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3"><label class="form-label">State</label><input type="text" class="form-control"/></div>
+                                <div class="col-md-6 mb-3"><label class="form-label">Transporter</label><div class="input-group"><input type="text" class="form-control"/><button class="btn btn-outline-primary" type="button"><i class="bx bx-search"></i></button></div></div>
+                            </div>
+                            <div class="mb-3"><label class="form-label">Comment Code</label><input type="text" class="form-control"/></div>
+                            <div class="mb-3"><label class="form-label">Project</label><input type="text" class="form-control"/></div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3"><label class="form-label">DO No</label><input type="text" class="form-control"/></div>
+                                <div class="col-md-6 mb-3"><label class="form-label">UC No</label><input type="text" class="form-control"/></div>
+                            </div>
+                            <div class="mb-3"><label class="form-label">Customer Ref No</label><input type="text" class="form-control"/></div>
+                            <div class="mb-3"><label class="form-label">Shipper Ref No</label><input type="text" class="form-control"/></div>
+                            <div class="mb-3"><label class="form-label">Note</label><textarea class="form-control" rows="2"></textarea></div>
+                            <div class="mb-3"><label class="form-label">Internal Note</label><textarea class="form-control" rows="2"></textarea></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Measurement Section -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <h5 class="card-header">Measurement</h5>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2 mb-3"><label class="form-label">Extl.Pcs <span class="text-danger">*</span></label><input type="text" class="form-control"/></div>
+                                <div class="col-md-2 mb-3"><label class="form-label">Intl.Pcs</label><input type="text" class="form-control"/></div>
+                                <div class="col-md-2 mb-3"><label class="form-label">Gr Weight <span class="text-danger">*</span></label><input type="text" class="form-control"/></div>
+                                <div class="col-md-2 mb-3"><label class="form-label">Volume</label><input type="text" class="form-control"/></div>
+                                <div class="col-md-2 mb-3"><label class="form-label">Vol Weight</label><input type="text" class="form-control"/></div>
+                                <div class="col-md-2 mb-3"><label class="form-label">Char.Weight</label><input type="text" class="form-control"/></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <!-- Charges Pane -->
+<div class="tab-pane fade p-4" id="hawb-charges" role="tabpanel">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-end mb-4">
+                <button class="btn btn-secondary" type="button">Cost Sheet</button>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="table-light">
+                            <th style="min-width: 80px;">SNo.</th>
+                            <th style="min-width: 150px;">Code <span class="text-danger">*</span></th>
+                            <th style="min-width: 200px;">Charge Name <span class="text-danger">*</span></th>
+                            <th style="min-width: 170px;">Revenue/Neutral <span class="text-danger">*</span></th>
+                            <th style="min-width: 150px;">PP/CC <span class="text-danger">*</span></th>
+                            <th style="min-width: 150px;">Currency <span class="text-danger">*</span></th>
+                            <th style="min-width: 150px;">ROE <span class="text-danger">*</span></th>
+                            <th style="min-width: 150px;">Unit</th>
+                            <th style="min-width: 150px;">Amount Per Unit</th>
+                            <th style="min-width: 150px;">Amount <span class="text-danger">*</span></th>
+                            <th style="min-width: 150px;">Local Amt</th>
+                            <th style="min-width: 200px;">Note</th>
+                            <th style="min-width: 80px;" class="text-center">Select</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="hawbChargesTableBody">
+                        <tr>
+                            <td class="p-2"><input type="text" class="form-control form-control-sm" readonly value="1" /></td>
+                            <td class="p-2"><input type="text" class="form-control form-control-sm" /></td>
+                            <td class="p-2"><input type="text" class="form-control form-control-sm" readonly /></td>
+                            <td class="p-2"><select class="form-select form-select-sm"><option>Revenue</option></select></td>
+                            <td class="p-2"><select class="form-select form-select-sm"><option>Prepaid</option></select></td>
+                            <td class="p-2"><input type="text" class="form-control form-control-sm" /></td>
+                            <td class="p-2"><input type="text" class="form-control form-control-sm" /></td>
+                            <td class="p-2"><input type="text" class="form-control form-control-sm" /></td>
+                            <td class="p-2"><input type="text" class="form-control form-control-sm" /></td>
+                            <td class="p-2"><input type="text" class="form-control form-control-sm" /></td>
+                            <td class="p-2"><input type="text" class="form-control form-control-sm" readonly /></td>
+                            <td class="p-2"><div class="input-group input-group-sm"><button class="btn btn-outline-secondary" type="button">...</button></div></td>
+                            <td class="p-2 text-center align-middle"><input class="form-check-input" type="checkbox"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-start mt-3">
+                <button type="button" class="btn btn-sm btn-outline-primary" id="addHawbChargeRowBtn">
+                    <i class="bx bx-plus me-1"></i>Add Row
+                </button>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="row align-items-end">
+                <div class="col-md-4">
+                    <label class="form-label" for="quotation-input">Quotation</label>
+                    <div class="input-group">
+                        <input type="text" id="quotation-input" class="form-control" />
+                        <button class="btn btn-outline-primary" type="button">...</button>
+                    </div>
+                </div>
+                <div class="col-md-8 text-end">
+                    <div class="d-flex flex-wrap gap-2 justify-content-end">
+                        <button class="btn btn-primary" type="button">Get Quotation Charges</button>
+                        <button class="btn btn-primary" type="button">Get Default Rates</button>
+                        <button class="btn btn-secondary" type="button">History</button>
+                        <button class="btn btn-secondary" type="button">Get Provisional Cost</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+
+    const addHawbChargeBtn = document.getElementById('addHawbChargeRowBtn');
+    if (addHawbChargeBtn) {
+        const hawbChargesTableBody = document.getElementById('hawbChargesTableBody');
+
+        addHawbChargeBtn.addEventListener('click', function () {
+            const rowCount = hawbChargesTableBody.rows.length;
+            const newRow = hawbChargesTableBody.insertRow(rowCount);
+
+            newRow.innerHTML = `
+                <td class="p-2"><input type="text" class="form-control form-control-sm" readonly value="${rowCount + 1}"/></td>
+                <td class="p-2"><input type="text" class="form-control form-control-sm"/></td>
+                <td class="p-2"><input type="text" class="form-control form-control-sm" readonly/></td>
+                <td class="p-2"><select class="form-select form-select-sm"><option>Revenue</option></select></td>
+                <td class="p-2"><select class="form-select form-select-sm"><option>Prepaid</option></select></td>
+                <td class="p-2"><input type="text" class="form-control form-control-sm"/></td>
+                <td class="p-2"><input type="text" class="form-control form-control-sm"/></td>
+                <td class="p-2"><input type="text" class="form-control form-control-sm"/></td>
+                <td class="p-2"><input type="text" class="form-control form-control-sm"/></td>
+                <td class="p-2"><input type="text" class="form-control form-control-sm"/></td>
+                <td class="p-2"><input type="text" class="form-control form-control-sm" readonly/></td>
+                <td class="p-2"><div class="input-group input-group-sm"><button class="btn btn-outline-secondary" type="button">...</button></div></td>
+                <td class="p-2 text-center align-middle"><input class="form-check-input" type="checkbox"></td>
+            `;
+        });
+    }
+
+
+
+});
+</script>
+          <!-- Note Pane -->
+<div class="tab-pane fade p-3" id="hawb-note" role="tabpanel">
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="table-light">
+                            <th style="width: 5%;">SNo <span class="text-danger">*</span></th>
+                            <th style="width: 10%;">Date <span class="text-danger">*</span></th>
+                            <th style="width: 10%;">Follow Up</th>
+                            <th style="width: 10%;">Type</th>
+                            <th style="width: 15%;">Assign To Name</th>
+                            <th style="width: 15%;">Email</th>
+                            <th>Note <span class="text-danger">*</span></th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="hawbNoteTableBody">
+                        <tr>
+                            <td class="p-1"><input type="text" class="form-control form-control-sm" readonly value="1" /></td>
+                            <td class="p-1"><input type="date" class="form-control form-control-sm" /></td>
+                            <td class="p-1"><input type="date" class="form-control form-control-sm" /></td>
+                            <td class="p-1"><select class="form-select form-select-sm"><option selected>Select...</option></select></td>
+                            <td class="p-1"><input type="text" class="form-control form-control-sm" /></td>
+                            <td class="p-1"><input type="email" class="form-control form-control-sm" /></td>
+                            <td class="p-1"><input type="text" class="form-control form-control-sm" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-end mt-3">
+
+                <button class="btn btn-sm btn-outline-primary" id="addHawbNoteRowBtn" type="button">Add Row</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    // --- Logic for MAWB CHARGE Table ---
+    const addMawbChargeBtn = document.getElementById('addMawbChargeRowBtn');
+    if (addMawbChargeBtn) {
+        const mawbChargeTableBody = document.getElementById('mawbChargesTableBody');
+        addMawbChargeBtn.addEventListener('click', function () {
+            const rowCount = mawbChargeTableBody.rows.length;
+            const newRow = mawbChargeTableBody.insertRow(rowCount);
+            newRow.innerHTML = `
+                <td class="p-2"><input type="text" class="form-control" value="${rowCount + 1}" readonly></td>
+                <td class="p-2"><input type="text" class="form-control"></td>
+                <td class="p-2"><input type="text" class="form-control"></td>
+                <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                <td class="p-2"><input type="text" class="form-control"></td>
+                <td class="p-2"><input type="text" class="form-control"></td>
+                <td class="p-2"><input type="text" class="form-control"></td>
+                <td class="p-2"><input type="text" class="form-control"></td>
+                <td class="p-2"><input type="text" class="form-control"></td>
+                <td class="p-2"><input type="text" class="form-control"></td>
+                <td class="p-2"><select class="form-select"><option selected>...</option></select></td>
+                <td class="p-2"><input type="text" class="form-control"></td>
+            `;
+        });
+    }
+
+    // --- Logic for HAWB NOTE Table ---
+    const addHawbNoteBtn = document.getElementById('addHawbNoteRowBtn');
+    if (addHawbNoteBtn) {
+        const hawbNoteTableBody = document.getElementById('hawbNoteTableBody');
+        addHawbNoteBtn.addEventListener('click', function () {
+            const rowCount = hawbNoteTableBody.rows.length;
+            const newRow = hawbNoteTableBody.insertRow(rowCount);
+            newRow.innerHTML = `
+                <td class="p-1"><input type="text" class="form-control form-control-sm" readonly value="${rowCount + 1}"/></td>
+                <td class="p-1"><input type="date" class="form-control form-control-sm"/></td>
+                <td class="p-1"><input type="date" class="form-control form-control-sm"/></td>
+                <td class="p-1"><select class="form-select form-select-sm"><option selected>Select...</option></select></td>
+                <td class="p-1"><input type="text" class="form-control form-control-sm"/></td>
+                <td class="p-1"><input type="email" class="form-control form-control-sm"/></td>
+                <td class="p-1"><input type="text" class="form-control form-control-sm"/></td>
+            `;
+        });
+    }
+
+    // --- You can add other table logic here in the future ---
+
+});
+</script>
+          <!-- Links Pane -->
+          <div class="tab-pane fade p-3" id="hawb-links" role="tabpanel">
+            <div class="row">
+              <div class="col-md-9"><div class="row"><div class="col-md-3 d-grid gap-2"><button class="btn btn-outline-secondary" type="button">Create Invoice</button><button class="btn btn-outline-secondary" type="button">Create Credit Note (Rev)</button><button class="btn btn-outline-secondary" type="button">Create Credit Note (Cost)</button><button class="btn btn-outline-secondary" type="button">Invoice/Credit Note List</button><button class="btn btn-outline-secondary" type="button">Document</button><button class="btn btn-outline-secondary" type="button">Commodity Details</button></div><div class="col-md-3 d-grid gap-2"><button class="btn btn-outline-secondary" type="button">Job Ledger</button><button class="btn btn-outline-secondary" type="button">Provisional Cost</button><button class="btn btn-outline-secondary" type="button">CR Journal</button><button class="btn btn-outline-secondary" type="button">Receipt</button><button class="btn btn-outline-secondary" type="button">CFS Delivery</button><button class="btn btn-outline-secondary" type="button">Bill of Entry</button></div><div class="col-md-3 d-grid gap-2"><button class="btn btn-outline-secondary" type="button">Payment Request</button><button class="btn btn-outline-secondary" type="button">Payment Voucher</button><button class="btn btn-danger" type="button">Subjob Close</button><button class="btn btn-outline-secondary" type="button">Subjob Comment History</button><button class="btn btn-outline-secondary" type="button">Job Signoff</button><button class="btn btn-outline-secondary" type="button">Customs Document</button></div><div class="col-md-3 d-grid gap-2"><button class="btn btn-outline-secondary" type="button">Issued documents</button><button class="btn btn-outline-secondary" type="button">Cost Invoice Voucher</button></div></div></div>
+              <div class="col-md-3"><div class="mb-3"><label for="subjob-comment" class="form-label">Subjob Comment</label><input class="form-control" type="text" id="subjob-comment"></div><hr><div class="card bg-light"><h5 class="card-header py-2">Import Job Details</h5><div class="card-body"><label class="form-label">Job</label><div class="input-group"><input type="text" class="form-control" placeholder="Seg"/><input type="text" class="form-control" placeholder="Job No"/><button class="btn btn-outline-primary" type="button">...</button></div></div></div></div>
+            </div>
+          </div>
+          <!-- Others Pane -->
+          <div class="tab-pane fade p-3" id="hawb-others" role="tabpanel">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row"><div class="col-md-7"><div class="card bg-light p-3"><h5 class="card-title mb-3">Subjob Reference</h5><div class="row"><label for="subjob-ref" class="col-md-2 col-form-label">Subjob</label><div class="col-md-4"><input class="form-control" type="text" id="subjob-ref" /></div><label for="hawb-ref" class="col-md-2 col-form-label">HAWB</label><div class="col-md-4"><input class="form-control" type="text" id="hawb-ref" /></div></div></div></div></div>
+                    <hr class="my-4">
+                    <div class="row"><div class="col-md-6"><div class="row mb-3"><label for="bayan-no" class="col-md-4 col-form-label">BAYAN No</label><div class="col-md-8"><input class="form-control" type="text" id="bayan-no" /></div></div><div class="row mb-3"><label for="custom-entry-no" class="col-md-4 col-form-label">Custom Entry No</label><div class="col-md-8"><input class="form-control" type="text" id="custom-entry-no" /></div></div></div><div class="col-md-6"><div class="row mb-3"><label for="bayan-date" class="col-md-4 col-form-label">BAYAN Date</label><div class="col-md-8"><input class="form-control" type="date" id="bayan-date" /></div></div><div class="row mb-3"><label for="custom-entry-date" class="col-md-4 col-form-label">Custom Entry Date</label><div class="col-md-8"><input class="form-control" type="date" id="custom-entry-date" /></div></div></div></div>
+                    <div class="row mb-3"><label for="cost-center-code" class="col-md-2 col-form-label">Cost Center Code</label><div class="col-md-10"><input class="form-control" type="text" id="cost-center-code" /></div></div>
+                    <div class="row"><label for="invoice-note" class="col-md-2 col-form-label">Invoice Note</label><div class="col-md-10"><textarea class="form-control" id="invoice-note" rows="4"></textarea></div></div>
+                </div>
+            </div>
+          </div>
+
+          <!-- Delivery Pane -->
+          <div class="tab-pane fade p-3" id="hawb-delivery" role="tabpanel">
+            <div class="row">
+                <div class="col-md-6 mb-4"><div class="card"><div class="card-body"><h5 class="card-title">Subjob Reference</h5><div class="row"><div class="col-md-4"><label class="form-label">Segment</label><input type="text" class="form-control" /></div><div class="col-md-4"><label class="form-label">Subjob</label><input type="text" class="form-control" /></div><div class="col-md-4"><label class="form-label">HBL</label><input type="text" class="form-control" /></div></div></div></div></div>
+                <div class="col-md-6 mb-4"><div class="card"><div class="card-body"><h5 class="card-title">Local Job No</h5><div class="input-group"><input type="text" class="form-control" placeholder="Job No..." /><button class="btn btn-outline-primary" type="button">...</button></div></div></div></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><div class="card"><h5 class="card-header">Collection</h5><div class="card-body"><div class="mb-3"><label class="form-label">Our Pickup</label><select class="form-select"><option>Select...</option></select></div><div class="mb-3"><label class="form-label">Collection Point</label><input type="text" class="form-control"/></div><div class="mb-3"><label class="form-label">CFS Delivery Point</label><input type="text" class="form-control"/></div><div class="row mb-3"><div class="col-md-6"><label class="form-label">CFS Delivery Date</label><input type="date" class="form-control"/></div><div class="col-md-6"><label class="form-label">CFS Delivery Time</label><input type="time" class="form-control"/></div></div><div class="mb-3"><label class="form-label">Collect From</label><input type="text" class="form-control"/></div><div class="mb-3"><label class="form-label">Contact Person</label><input type="text" class="form-control"/></div><div class="mb-3"><label class="form-label">Pickup Place</label><textarea class="form-control" rows="2"></textarea></div><div class="row mb-3"><div class="col-md-6"><label class="form-label">Telephone No</label><input type="tel" class="form-control"/></div><div class="col-md-6"><label class="form-label">Mobile No</label><input type="tel" class="form-control"/></div></div><div class="mb-3"><label class="form-label">eMail ID</label><input type="email" class="form-control"/></div><div class="row mb-3"><div class="col-md-6"><label class="form-label">Conf. Pickup Date</label><input type="date" class="form-control"/></div><div class="col-md-6"><label class="form-label">Conf. Pickup Time</label><input type="time" class="form-control"/></div></div><div class="mb-3"><label class="form-label">Transport Note</label><input type="text" class="form-control"/></div></div></div></div>
+                <div class="col-md-6"><div class="card"><h5 class="card-header">Door Delivery</h5><div class="card-body"><div class="mb-3"><label class="form-label">Our Delivery <span class="text-danger">*</span></label><select class="form-select"><option>Select...</option></select></div><div class="mb-3"><label class="form-label">Delivery Point</label><input type="text" class="form-control"/></div><div class="mb-3"><label class="form-label">Deliver To</label><input type="text" class="form-control"/></div><div class="mb-3"><label class="form-label">Contact Person</label><input type="text" class="form-control"/></div><div class="mb-3"><label class="form-label">Delivery Place</label><textarea class="form-control" rows="2"></textarea></div><div class="row mb-3"><div class="col-md-6"><label class="form-label">Telephone No</label><input type="tel" class="form-control"/></div><div class="col-md-6"><label class="form-label">Mobile No</label><input type="tel" class="form-control"/></div></div><div class="mb-3"><label class="form-label">eMail ID</label><input type="email" class="form-control"/></div><div class="row mb-3"><div class="col-md-6"><label class="form-label">Conf. Deliv. Date</label><input type="date" class="form-control"/></div><div class="col-md-6"><label class="form-label">Conf. Deliv. Time</label><input type="time" class="form-control"/></div></div><div class="mb-3"><label class="form-label">Delivery Date</label><input type="date" class="form-control"/></div></div></div></div>
+            </div>
+            </div>
+            <!-- MUNICIPALITY TAB PANE -->
+            <!-- ======================================= -->
+            <div class="tab-pane fade p-3" id="hawb-municipality" role="tabpanel">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card bg-light p-3 mb-4">
+                         <h5 class="card-title mb-3">Subjob Reference</h5>
+                         <div class="row">
+                            <label for="mun-subjob" class="col-md-1 col-form-label">Subjob</label>
+                            <div class="col-md-2">
+                                <input class="form-control" type="text" id="mun-subjob" />
+                            </div>
+                            <label for="mun-hawb" class="col-md-1 col-form-label">HAWB</label>
+                            <div class="col-md-8">
+                                <input class="form-control" type="text" id="mun-hawb" />
+                            </div>
+                         </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="followup-date" class="col-md-2 col-form-label">Followup Date</label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="date" id="followup-date" />
+                        </div>
+                        <label for="followup-completed" class="col-md-2 col-form-label text-end">Followup Completed</label>
+                        <div class="col-md-4">
+                             <select id="followup-completed" class="form-select"><option>Select...</option><option>Yes</option><option>No</option></select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="result" class="col-md-2 col-form-label">Result</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" id="result" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="port" class="col-md-2 col-form-label">Port</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" id="port" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="shift" class="col-md-2 col-form-label">Shift</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" id="shift" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="cleared-on" class="col-md-2 col-form-label">Cleared On</label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="date" id="cleared-on" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="report-preview-no" class="col-md-2 col-form-label">Report Preview No</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" id="report-preview-no" />
+                        </div>
+                    </div>
+                     <div class="row mb-3">
+                        <label for="invoice-no" class="col-md-2 col-form-label">Invoice No</label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="text" id="invoice-no" />
+                        </div>
+                    </div>
+                     <div class="row mb-3">
+                        <label for="inspection-name" class="col-md-2 col-form-label">Inspection Name</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" id="inspection-name" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="company-name" class="col-md-2 col-form-label">Company Name</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" id="company-name" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="mun-note" class="col-md-2 col-form-label">Note</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control" id="mun-note" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- ======================================= -->
+<!-- EVENT / REFERENCE TAB PANE -->
+<!-- ======================================= -->
+<div class="tab-pane fade p-3" id="hawb-event" role="tabpanel">
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Subjob Reference</h5>
+            <div class="row align-items-end">
+                <div class="col-md-auto">
+                    <label for="event-segment" class="form-label">Segment</label>
+                    <input class="form-control" type="text" id="event-segment" />
+                </div>
+                <div class="col-md-auto">
+                    <label for="event-subjob" class="form-label">Subjob</label>
+                    <input class="form-control" type="text" id="event-subjob" />
+                </div>
+                <div class="col-md-5">
+                    <label for="event-hawb" class="form-label">HAWB</label>
+                    <input class="form-control" type="text" id="event-hawb" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Events Section -->
+        <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Events</h5>
+                    <div class="table-responsive mb-3">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="align-middle" style="width: 10%;">SNo</th>
+                                    <th class="align-middle">Code <span class="text-danger">*</span></th>
+                                    <th class="align-middle">Date <span class="text-danger">*</span></th>
+                                    <th class="align-middle">Time</th>
+                                    <th class="align-middle">Note</th>
+                                </tr>
+                            </thead>
+                            <tbody id="eventsTableBody">
+                                <!-- Showcase Row -->
+                                <tr>
+                                    <td class="p-2 align-middle">
+                                        <input type="text" class="form-control" value="1" readonly>
+                                    </td>
+                                    <td class="p-2 align-middle">
+                                        <input type="text" class="form-control">
+                                    </td>
+                                    <td class="p-2 align-middle">
+                                        <input type="date" class="form-control">
+                                    </td>
+                                    <td class="p-2 align-middle">
+                                        <input type="text" class="form-control">
+                                    </td>
+                                    <td class="p-2 align-middle">
+                                        <input type="text" class="form-control">
+                                    </td>
+                                </tr>
+                                <!-- Additional rows will be added here dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-end mb-3">
+                        <button type="button" class="btn btn-sm btn-outline-primary" id="addEventRowBtn">
+                            <i class="bx bx-plus me-1"></i>Add Row
+                        </button>
+                    </div>
+                    <div class="mt-auto">
+                        <input type="text" class="form-control" placeholder="Event Name">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- References Section -->
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">References</h5>
+                    <div class="table-responsive mb-3">
+                                                <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="align-middle" style="width: 10%;">SNo</th>
+                                    <th class="align-middle">Code <span class="text-danger">*</span></th>
+                                    <th class="align-middle">Number <span class="text-danger">*</span></th>
+                                    <th class="align-middle">Note</th>
+                                </tr>
+                            </thead>
+                            <tbody id="referencesTableBody">
+                                <!-- Showcase Row -->
+                                <tr>
+                                    <td class="p-2 align-middle">
+                                        <input type="text" class="form-control" value="1" readonly>
+                                    </td>
+                                    <td class="p-2 align-middle">
+                                        <input type="text" class="form-control">
+                                    </td>
+                                    <td class="p-2 align-middle">
+                                        <input type="text" class="form-control">
+                                    </td>
+                                    <td class="p-2 align-middle">
+                                        <input type="text" class="form-control">
+                                    </td>
+                                </tr>
+                                <!-- Additional rows will be added here dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-end mb-3">
+                        <button type="button" class="btn btn-sm btn-outline-primary" id="addReferenceRowBtn">
+                            <i class="bx bx-plus me-1"></i>Add Row
+                        </button>
+                    </div>
+                    <div class="mt-auto">
+                        <input type="text" class="form-control" placeholder="Reference Name">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- IMPORT JOB CHARGE TAB PANE              -->
+<!-- ======================================= -->
+<div class="tab-pane fade p-3" id="hawb-import-charge" role="tabpanel">
+    <!-- Subjob Reference Section -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Subjob Reference</h5>
+            <div class="row align-items-end">
+                <div class="col-md-2">
+                    <label for="ijc-segment" class="form-label">Segment</label>
+                    <input class="form-control" type="text" id="ijc-segment" />
+                </div>
+                <div class="col-md-2">
+                    <label for="ijc-subjob" class="form-label">Subjob</label>
+                    <input class="form-control" type="text" id="ijc-subjob" />
+                </div>
+                <div class="col-md-8">
+                    <label for="ijc-hawb" class="form-label">HAWB</label>
+                    <input class="form-control" type="text" id="ijc-hawb" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charges Table Section -->
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" style="min-width: 1600px;">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="align-middle" style="width: 5%;">SNo</th>
+                            <th class="align-middle" style="width: 8%;">Charge</th>
+                            <th class="align-middle" style="width: 12%;">Name</th>
+                            <th class="align-middle" style="width: 10%;">Neutral/Revenue</th>
+                            <th class="align-middle" style="width: 8%;">PP/CC</th>
+                            <th class="align-middle" style="width: 7%;">Curr.</th>
+                            <th class="align-middle" style="width: 7%;">ROE</th>
+                            <th class="align-middle" style="width: 7%;">No. of Unit</th>
+                            <th class="align-middle" style="width: 7%;">Per Unit</th>
+                            <th class="align-middle" style="width: 8%;">Amount</th>
+                            <th class="align-middle" style="width: 8%;">Local Amount</th>
+                            <th class="align-middle" style="width: 8%;">Note</th>
+                            <th class="align-middle text-center" style="width: 5%;">Notify</th>
+                            <th class="align-middle text-center" style="width: 5%;">Tax</th>
+                        </tr>
+                    </thead>
+                    <tbody id="importChargesTableBody">
+                        <!-- Showcase Row -->
+                        <tr>
+                            <td class="p-2 align-middle"><input type="text" class="form-control" value="1" readonly></td>
+                            <td class="p-2 align-middle"><input type="text" class="form-control"></td>
+                            <td class="p-2 align-middle"><input type="text" class="form-control"></td>
+                            <td class="p-2 align-middle"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2 align-middle"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2 align-middle"><input type="text" class="form-control"></td>
+                            <td class="p-2 align-middle"><input type="text" class="form-control"></td>
+                            <td class="p-2 align-middle"><input type="text" class="form-control"></td>
+                            <td class="p-2 align-middle"><input type="text" class="form-control"></td>
+                            <td class="p-2 align-middle"><input type="text" class="form-control"></td>
+                            <td class="p-2 align-middle"><input type="text" class="form-control"></td>
+                            <td class="p-2 align-middle"><select class="form-select"><option selected>...</option></select></td>
+                            <td class="p-2 align-middle text-center"><input class="form-check-input" type="checkbox"></td>
+                            <td class="p-2 align-middle text-center"><input class="form-check-input" type="checkbox"></td>
+                        </tr>
+                        <!-- Additional rows will be added here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-between mt-3">
+                 <button type="button" class="btn btn-sm btn-outline-primary" id="addImportChargeRowBtn">
+                    <i class="bx bx-plus me-1"></i>Add Row
+                </button>
+                <div class="row align-items-center g-2">
+                    <div class="col-auto">
+                        <label for="total-amount" class="col-form-label">Total Amount</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" id="total-amount" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ======================================= -->
+<!-- TRANSPORT TAB PANE                      -->
+<!-- ======================================= -->
+<div class="tab-pane fade p-3" id="hawb-transport" role="tabpanel">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <!-- Left Column -->
+                <div class="col-md-6">
+                    <div class="row mb-3">
+                        <label for="first-transporter" class="col-lg-4 col-form-label">First Transporter Name</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="first-transporter">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="transport-date" class="col-lg-4 col-form-label">Transportation Date</label>
+                        <div class="col-lg-8">
+                            <input type="date" class="form-control" id="transport-date">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="first-vehicle-no" class="col-lg-4 col-form-label">First Vehicle Number</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="first-vehicle-no">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="first-driver-name" class="col-lg-4 col-form-label">First Driver Name</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="first-driver-name">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="first-driver-mobile" class="col-lg-4 col-form-label">First Driver Mobile No</label>
+                        <div class="col-lg-8">
+                            <input type="tel" class="form-control" id="first-driver-mobile">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="from-place" class="col-lg-4 col-form-label">From Place</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="from-place">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="to-place" class="col-lg-4 col-form-label">To Place</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="to-place">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="col-md-6">
+                    <div class="row mb-3">
+                        <label for="second-transporter" class="col-lg-4 col-form-label">Second Transporter Name</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="second-transporter">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="transit-date" class="col-lg-4 col-form-label">Transit Warehouse Date</label>
+                        <div class="col-lg-8">
+                            <input type="date" class="form-control" id="transit-date">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="second-vehicle-no" class="col-lg-4 col-form-label">Second Vehicle Number</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="second-vehicle-no">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="second-driver-name" class="col-lg-4 col-form-label">Second Driver Name</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="second-driver-name">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="second-driver-mobile" class="col-lg-4 col-form-label">Second Driver Mobile No</label>
+                        <div class="col-lg-8">
+                            <input type="tel" class="form-control" id="second-driver-mobile">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="final-destination" class="col-lg-4 col-form-label">Final Destination</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="final-destination">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="final-delivery-date" class="col-lg-4 col-form-label">Final Delivery Date</label>
+                        <div class="col-lg-8">
+                            <input type="date" class="form-control" id="final-delivery-date">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Action Buttons -->
+<div class="row mt-4">
+    <div class="col-12 text-center">
+        <button type="submit" class="btn btn-primary me-2">Save Job</button>
+        <button type="reset" class="btn btn-label-secondary">Cancel</button>
+    </div>
+</div>
+

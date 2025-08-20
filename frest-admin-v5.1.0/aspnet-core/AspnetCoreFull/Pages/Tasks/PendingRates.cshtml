@@ -1,0 +1,36 @@
+@page
+@model AspnetCoreFull.Pages.Tasks.PendingRatesModel
+@{
+    ViewData["Title"] = "Bookings Entered But Rate Not Entered";
+}
+
+<div class="card">
+    <h5 class="card-header">@ViewData["Title"]</h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Segment</th>
+                    <th>Booking No</th>
+                    <th>Booking Date</th>
+                    <th>Booking Person</th>
+                    <th>Shipper/Consignee Code</th>
+                    <th>Shipper/Consignee Name</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model.Bookings)
+                {
+                    <tr>
+                        <td><i class="bx bx-export fa-lg text-primary me-3"></i> <strong>@item.Segment</strong></td>
+                        <td>@item.BookingNo</td>
+                        <td>@item.BookingDate</td>
+                        <td>@item.BookingPerson</td>
+                        <td>@item.ShipperCode</td>
+                        <td>@item.ShipperName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

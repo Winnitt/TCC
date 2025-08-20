@@ -1,0 +1,137 @@
+@page
+@model AspnetCoreFull.Pages.eAir.MAWBStockEnquiryJobModel
+@{
+    ViewData["Title"] = "MAWB Stock Enquiry";
+}
+
+<h4 class="fw-bold py-3 mb-4">
+  <span class="text-muted fw-light">eAir /</span> @ViewData["Title"]
+</h4>
+<style>
+    /* Custom style for the first input field */
+    .first-carrier-input {
+
+        border-color: #002060;
+        color: white; /* Optional: for better text visibility */
+    }
+</style>
+
+<div class="tab-pane fade show active p-3" id="mawb-stock-grid" role="tabpanel">
+    <div class="card">
+        <div class="card-body" >
+
+            <!-- Scrollable Table Container -->
+            <div class="table-responsive" style="max-height: 500px; overflow: auto;">
+                <table class="table table-bordered table-sm" style="min-width: 1200px;">
+                    <thead class="text-center table-light" style="position: sticky; top: -1px; z-index: 1;">
+                        <tr>
+                            <th>Carrier</th>
+                            <th>Carrier Name</th>
+                            <th>POR</th>
+                            <th>Stock In Hand</th>
+                            <th>Last Used<br>MAWB Number</th>
+                            <th>Last Used<br>MAWB Date</th>
+                            <th>Booking No</th>
+                            <th>Next<br>MAWB Number</th>
+                            <th>Re order</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mawbStockTableBody">
+                        <!-- Initial Rows -->
+                        <tr>
+                            <td><input type="text" class="form-control form-control-sm first-carrier-input"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="date" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                        </tr>
+                        <!-- Repeat rows as needed for initial display -->
+                        <tr>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="date" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="date" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                        </tr>
+                         <tr>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="date" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-flex justify-content-start mt-3">
+                <button type="button" class="btn btn-primary" id="addMawbRowBtn">
+                    <i class="bx bx-plus me-1"></i>Add Row
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const addRowBtn = document.getElementById('addMawbRowBtn');
+    const tableBody = document.getElementById('mawbStockTableBody');
+
+    if (addRowBtn && tableBody) {
+        addRowBtn.addEventListener('click', function () {
+            // Create a new table row element
+            const newRow = document.createElement('tr');
+
+            // Define the HTML content for the cells of the new row
+            newRow.innerHTML = `
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="date" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+            `;
+
+            // Append the new row to the table body
+            tableBody.appendChild(newRow);
+        });
+    } else {
+        console.error("Could not find the 'Add Row' button or the table body. Add row functionality will not work.");
+    }
+});
+</script>
+<!-- Action Buttons -->
+<div class="row mt-4">
+    <div class="col-12 text-center">
+        <button type="submit" class="btn btn-primary me-2">Save Job</button>
+        <button type="reset" class="btn btn-label-secondary">Cancel</button>
+    </div>
+</div>

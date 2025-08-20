@@ -1,0 +1,45 @@
+@page
+@* THIS MUST POINT TO THE CLASS NAME ENDING IN "Model" *@
+@model AspnetCoreFull.Pages.Tasks.BookingPersonwisePendingBookingsModel
+@{
+    ViewData["Title"] = "Booking Personwise Pending Bookings";
+}
+
+<div class="card">
+    <h5 class="card-header">@ViewData["Title"]</h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Segment</th>
+                    <th>Booking No</th>
+                    <th>Booking Date</th>
+                    <th>HBL/HAWB NO.</th>
+                    <th>Booking Person</th>
+                    <th>Forwader Name</th> <!-- Typo fixed here -->
+                    <th>Shipper Name</th>
+                    <th>Notify/Consignee Name</th>
+                    <th>Agent Name</th>
+
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model.Bookings)
+                {
+                    <tr>
+                        <td><strong>@item.Segment</strong></td>
+                        <td>@item.BookingNo</td>
+                        <td>@item.BookingDate</td>
+                        <td>@item.HBLHAWBNO</td>
+                        <td>@item.BookingPerson</td>
+                        <td>@item.ForwaderName</td>
+                        <td>@item.ShipperName</td>
+                        <td>@item.ConsigneeName</td>
+                        <td>@item.AgentName</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+@*
+This is the updated menu with the "eAir" dropdown implemented
+and the "Configuration" section structured correctly.
+*@
+
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+
+  <!-- Logo -->
+  <div class="app-brand demo">
+    <a href="/" class="app-brand-link">
+      <span class="app-brand-logo demo">
+        <img src="~/images/tcc.jpeg" alt="TCC Logo" style="height: 32px;" />
+      </span>
+      <span class="app-brand-text demo menu-text fw-bolder ms-2">Logistics</span>
+    </a>
+
+    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+      <i class="bx bx-chevron-left bx-sm align-middle"></i>
+    </a>
+  </div>
+  <!-- /Logo -->
+
+  <div class="menu-inner-shadow"></div>
+
+  <ul class="menu-inner py-1">
+    <!-- Main Links -->
+    <li class="menu-item active">
+      <a asp-page="/Index" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+        <div data-i18n="Dashboard">Dashboard</div>
+      </a>
+    </li>
+
+    <!-- Modules Header -->
+    <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">Modules</span>
+    </li>
+    <li class="menu-item"> <a href="javascript:void(0);" class="menu-link"> <i class="menu-icon tf-icons bx bx-star"></i> <div data-i18n="Favorites">Favorites</div> </a> </li>
+    <li class="menu-item"> <a href="javascript:void(0);" class="menu-link"> <i class="menu-icon tf-icons bx bx-chart"></i> <div data-i18n="eSales">eSales</div> </a> </li>
+    <li class="menu-item"> <a href="javascript:void(0);" class="menu-link"> <i class="menu-icon tf-icons bx bx-user-voice"></i> <div data-i18n="eCRM">eCRM</div> </a> </li>
+
+    <!-- eAir Dropdown Menu -->
+    <li class="menu-item">
+      <a href="javascript:void(0);" class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons bx bxs-plane-alt"></i>
+        <div data-i18n="eAir">eAir</div>
+      </a>
+      <ul class="menu-sub">
+        <li class="menu-item"> <a asp-page="/eAir/AirImportClearanceJob" class="menu-link"> <div data-i18n="Air Import Clearance Job">Air Import Clearance Job</div> </a> </li>
+        <li class="menu-item"> <a href="/eAir/AirImportJob" class="menu-link"> <div data-i18n="Air Import Job">Air Import Job</div> </a> </li>
+        <li class="menu-item"> <a href="/eAir/MAWBStockEnquiry" class="menu-link"> <div data-i18n="MAWB Stock Enquiry">MAWB Stock Enquiry</div> </a> </li>
+        <li class="menu-item"> <a href="/eAir/MAWBStockGeneration" class="menu-link"> <div data-i18n="MAWB Stock Generation">MAWB Stock Generation</div> </a> </li>
+        <li class="menu-item"> <a href="/eAir/MAWBCorrector" class="menu-link"> <div data-i18n="MAWB Corrector">MAWB Corrector</div> </a> </li>
+      </ul>
+    </li>
+
+    <li class="menu-item"> <a href="javascript:void(0);" class="menu-link"> <i class="menu-icon tf-icons bx bxs-ship"></i> <div data-i18n="eOcean">eOcean</div> </a> </li>
+    <li class="menu-item"> <a href="javascript:void(0);" class="menu-link"> <i class="menu-icon tf-icons bx bxs-truck"></i> <div data-i18n="eLand">eLand</div> </a> </li>
+    <li class="menu-item"> <a href="javascript:void(0);" class="menu-link"> <i class="menu-icon tf-icons bx bx-dollar-circle"></i> <div data-i18n="eFinance">eFinance</div> </a> </li>
+    <li class="menu-item"> <a href="javascript:void(0);" class="menu-link"> <i class="menu-icon tf-icons bx bx-box"></i> <div data-i18n="eSOC">eSOC</div> </a> </li>
+    <li class="menu-item"> <a href="javascript:void(0);" class="menu-link"> <i class="menu-icon tf-icons bx bx-cart-alt"></i> <div data-i18n="eMove">eMove</div> </a> </li>
+    <li class="menu-item"> <a href="javascript:void(0);" class="menu-link"> <i class="menu-icon tf-icons bx bxs-inbox"></i> <div data-i18n="eWMS">eWMS</div> </a> </li>
+    <li class="menu-item"> <a href="javascript:void(0);" class="menu-link"> <i class="menu-icon tf-icons bx bxs-user-detail"></i> <div data-i18n="eHRMS">eHRMS</div> </a> </li>
+
+    <!-- Configuration Header -->
+    <li class="menu-header small text-uppercase"><span class="menu-header-text">Configuration</span></li>
+    <!-- Reports -->
+    <li class="menu-item"> <a href="javascript:void(0);" class="menu-link"> <i class="menu-icon tf-icons bx bx-file"></i> <div data-i18n="Reports">Reports</div> </a> </li>
+    <!-- General -->
+    <li class="menu-item"> <a href="javascript:void(0);" class="menu-link"> <i class="menu-icon tf-icons bx bx-grid-alt"></i> <div data-i18n="General">General</div> </a> </li>
+    <!-- Masters -->
+    <li class="menu-item"> <a href="javascript:void(0);" class="menu-link"> <i class="menu-icon tf-icons bx bx-data"></i> <div data-i18n="Masters">Masters</div> </a> </li>
+    <!-- Setup -->
+    <li class="menu-item"> <a href="javascript:void(0);" class="menu-link"> <i class="menu-icon tf-icons bx bx-cog"></i> <div data-i18n="Setup">Setup</div> </a> </li>
+  </ul>
+
+</aside>

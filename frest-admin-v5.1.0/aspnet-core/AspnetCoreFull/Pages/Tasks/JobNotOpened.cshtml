@@ -1,0 +1,43 @@
+@page
+@model AspnetCoreFull.Pages.Tasks.JobNotOpenedModel
+@{
+    ViewData["Title"] = "Job Not Opened";
+}
+
+<div class="card">
+    <h5 class="card-header">@ViewData["Title"]</h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Segment</th>
+                    <th>Booking No</th>
+                    <th>POD</th>
+                    <th>Shipper</th>
+                    <th>Consignee</th>
+                    <th>Forwader</th>
+                    <th>Notify Customer</th>
+                    <th>ETA</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @* --- CORRECTED THE PROPERTY NAME HERE (Job instead of Bookings) --- *@
+                @foreach (var item in Model.Job)
+                {
+                    <tr>
+                        <td><strong>@item.Segment</strong></td>
+                        <td>@item.BookingNo</td>
+                        <td>@item.POD</td>
+                        <td>@item.Shipper</td>
+                        <td>@item.Consignee</td>
+                        <td>@item.Forwader</td>
+                        <td>@item.NotifyCustomer</td>
+                        <td>@item.ETA</td>
+                        <td>@item.Status</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
